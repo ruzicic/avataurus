@@ -1,146 +1,76 @@
-# Visual Quality Proposals for Avataurus
+# Avataurus — Visual Style Proposals (v2)
 
-Four directions to explore. Each has 5 sample SVGs generated from seeds: `alice`, `bob`, `charlie`, `dave`, `eve`.
+Three face-based avatar styles. All use modern muted color palettes (slate, stone, sage, taupe — no bright primaries). Every avatar is clearly recognizable as a face suitable for default profile pictures.
 
-All proposals share these improvements over current:
-- **Square viewBox** (no rounded clipping — let users handle that with CSS)
-- **Better contrast** (avatar vs background)
-- **Fewer colors** per avatar
-- **Deterministic** (same input → same output)
+Seeds: alice, bob, charlie, dave, eve, frank, grace, heidi, ivan, judy
 
 ---
 
-## A) Geometric Dino 🦕
+## C-v2: "Minimal Face"
 
-**Concept:** Keep the dino identity but make it angular and mature. Low-poly aesthetic with sharp edges, flat colors, and muted earthy tones.
+Clean, simple faces on muted backgrounds. Inspired by facehash.dev but with better proportions, modern palette, and subtle cheek blush for warmth.
 
-### Samples
+- Varied face shapes (circle, oval, rounded rect)
+- Multiple eye styles (dots, open circles, happy arcs, ovals)
+- Subtle noses, varied mouths
+- Warm cheek blush
+- Controllable palette via `colors` option
 
 | alice | bob | charlie | dave | eve |
-|-------|-----|---------|------|-----|
-| ![](a-geometric-dino-alice.svg) | ![](a-geometric-dino-bob.svg) | ![](a-geometric-dino-charlie.svg) | ![](a-geometric-dino-dave.svg) | ![](a-geometric-dino-eve.svg) |
+|---|---|---|---|---|
+| ![](png/c-v2-minimal-face-alice.png) | ![](png/c-v2-minimal-face-bob.png) | ![](png/c-v2-minimal-face-charlie.png) | ![](png/c-v2-minimal-face-dave.png) | ![](png/c-v2-minimal-face-eve.png) |
 
-### Key Changes
-- Head shapes are **polygons** (pentagons, hexagons, shields) instead of circles/ellipses
-- Spikes/horns are sharp triangles
-- Eyes use geometric shapes (diamonds, squares, slits) — reptilian feel
-- Only 2 colors per avatar (main + dark variant) on neutral gray background
-- Optional scale/stripe patterns on the face
-
-### Pros
-- ✅ Keeps the dino brand — recognizable identity for avataurus
-- ✅ Looks more mature/professional than current rounded style
-- ✅ Good contrast (colored dino on light gray)
-- ✅ Distinct from competitors (no one does geometric dinos)
-
-### Cons
-- ❌ Still a "character" avatar — may not fit all professional contexts
-- ❌ More complex SVG than abstract approaches
-- ❌ Angular shapes can look harsh at very small sizes
+| frank | grace | heidi | ivan | judy |
+|---|---|---|---|---|
+| ![](png/c-v2-minimal-face-frank.png) | ![](png/c-v2-minimal-face-grace.png) | ![](png/c-v2-minimal-face-heidi.png) | ![](png/c-v2-minimal-face-ivan.png) | ![](png/c-v2-minimal-face-judy.png) |
 
 ---
 
-## B) Abstract Shapes 🔶
+## E: "Geometric Face"
 
-**Concept:** Drop the dino theme entirely. Composed geometric shapes with radial gradients for subtle 3D depth. Inspired by boring-avatars' marble/bauhaus styles.
+Bauhaus-inspired faces with angular features — diamond eyes, triangular noses, geometric shapes — but still unmistakably faces.
 
-### Samples
+- Geometric face shapes (hexagon, trapezoid, rounded square)
+- Diamond, square, triangle eye shapes
+- Angular noses and mouths
+- Clean lines, modern feel
 
 | alice | bob | charlie | dave | eve |
-|-------|-----|---------|------|-----|
-| ![](b-abstract-shapes-alice.svg) | ![](b-abstract-shapes-bob.svg) | ![](b-abstract-shapes-charlie.svg) | ![](b-abstract-shapes-dave.svg) | ![](b-abstract-shapes-eve.svg) |
+|---|---|---|---|---|
+| ![](png/e-geometric-face-alice.png) | ![](png/e-geometric-face-bob.png) | ![](png/e-geometric-face-charlie.png) | ![](png/e-geometric-face-dave.png) | ![](png/e-geometric-face-eve.png) |
 
-### Key Changes
-- No face/character at all — pure geometric composition
-- 3-6 overlapping shapes (circles, rectangles, triangles, diamonds)
-- 5-color curated palettes (borrowed from proven design palettes)
-- Radial gradients on each shape for subtle 3D effect
-- Global rotation for additional variety
-
-### Pros
-- ✅ Universally professional — works in any context
-- ✅ Beautiful at any size
-- ✅ Proven concept (boring-avatars, Gravatar)
-- ✅ Lots of visual variety from simple rules
-
-### Cons
-- ❌ Loses all dino identity — "avataurus" name becomes meaningless
-- ❌ Harder to distinguish at a glance in a list
-- ❌ Many competitors already do this well
+| frank | grace | heidi | ivan | judy |
+|---|---|---|---|---|
+| ![](png/e-geometric-face-frank.png) | ![](png/e-geometric-face-grace.png) | ![](png/e-geometric-face-heidi.png) | ![](png/e-geometric-face-ivan.png) | ![](png/e-geometric-face-judy.png) |
 
 ---
 
-## C) Minimal Face 😐
+## F: "Soft Face"
 
-**Concept:** Simple face on a bold colored background. Facehash.dev-inspired but with more geometric variety. The personality comes from shape combinations, not color overload.
+Rounded, friendly faces like Slack/Notion defaults. Emphasis on expressive eyes, subtle gradients, and warmth.
 
-### Samples
+- Soft rounded face shapes
+- Expressive eyes with pupils and highlights
+- Subtle background gradient for depth
+- Always-present cheek blush
+- Warm, approachable, professional
 
 | alice | bob | charlie | dave | eve |
-|-------|-----|---------|------|-----|
-| ![](c-minimal-face-alice.svg) | ![](c-minimal-face-bob.svg) | ![](c-minimal-face-charlie.svg) | ![](c-minimal-face-dave.svg) | ![](c-minimal-face-eve.svg) |
+|---|---|---|---|---|
+| ![](png/f-soft-face-alice.png) | ![](png/f-soft-face-bob.png) | ![](png/f-soft-face-charlie.png) | ![](png/f-soft-face-dave.png) | ![](png/f-soft-face-eve.png) |
 
-### Key Changes
-- Warm off-white face on bold single-color background
-- Radial gradient overlay for subtle 3D shading on face
-- Eyes are the main differentiator (8 types: dots, circles, lines, ovals, etc.)
-- Simple nose (4 types including none) and mouth (8 types)
-- Optional eyebrows for expression
-- Only 3 colors total: background, face, features
-
-### Pros
-- ✅ Most polished/professional look
-- ✅ Humans naturally recognize faces → high distinctiveness
-- ✅ Excellent contrast (bold bg + light face)
-- ✅ Minimal SVG output
-- ✅ Scales beautifully from 16px to 512px
-
-### Cons
-- ❌ Very similar to facehash.dev — less original
-- ❌ Loses dino identity completely
-- ❌ Face variations may feel limited over time
+| frank | grace | heidi | ivan | judy |
+|---|---|---|---|---|
+| ![](png/f-soft-face-frank.png) | ![](png/f-soft-face-grace.png) | ![](png/f-soft-face-heidi.png) | ![](png/f-soft-face-ivan.png) | ![](png/f-soft-face-judy.png) |
 
 ---
 
-## D) Identicon+ 🔲
+## Color Palette
 
-**Concept:** Grid-based symmetrical patterns. Single color on near-white. Like GitHub/minidenticons but with shape variety (squares, circles, or diamonds).
+All proposals share the same palette philosophy:
+- **Background**: Muted mid-tones (slate, stone, zinc, sage, taupe, dusty rose)
+- **Face**: Warm off-white (#f5f0eb / #f7f3ee)
+- **Features**: Near-black (#2d2a27 / #35302b)
+- **Blush**: Subtle dusty pink/rose
 
-### Samples
-
-| alice | bob | charlie | dave | eve |
-|-------|-----|---------|------|-----|
-| ![](d-identicon-plus-alice.svg) | ![](d-identicon-plus-bob.svg) | ![](d-identicon-plus-charlie.svg) | ![](d-identicon-plus-dave.svg) | ![](d-identicon-plus-eve.svg) |
-
-### Key Changes
-- 7×7 grid with horizontal symmetry
-- Hash bits directly control which cells are filled
-- Three shape modes: rounded squares, circles, or diamonds
-- Single color per avatar from a curated palette
-- Optional subtle border frame
-- Ultra-minimal SVG output
-
-### Pros
-- ✅ Lightest SVG output of all proposals
-- ✅ Instantly recognizable pattern (familiar from GitHub)
-- ✅ Perfect symmetry is visually pleasing
-- ✅ Maximum contrast (single color on white)
-- ✅ Dead simple code — easy to maintain
-
-### Cons
-- ❌ Least "personality" — feels generic
-- ❌ No face or character to connect with
-- ❌ Very similar to existing identicon libraries
-- ❌ Limited differentiation at small sizes
-
----
-
-## Recommendation
-
-**C (Minimal Face)** or **A (Geometric Dino)** are the strongest options:
-
-- Pick **C** if you want maximum polish and universal appeal
-- Pick **A** if you want to keep the dino brand and stand out from competitors
-- Consider **A + C hybrid**: geometric dino face on a bold background with the minimal face's color approach (3 colors, strong contrast, 3D shading)
-
-All generator scripts are in `proposals/` and are self-contained. Run `node proposals/generate-all.mjs` to regenerate samples.
+No bright primaries. No saturated colors. Professional and modern.
