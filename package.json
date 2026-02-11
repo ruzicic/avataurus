@@ -1,7 +1,7 @@
 {
   "name": "avataurus",
   "version": "1.0.0",
-  "description": "Deterministic avatar generator — unique dinosaur-inspired faces from any string. 1.7B+ combinations, zero dependencies.",
+  "description": "Deterministic avatar generator — unique minimal face avatars from any string. Zero dependencies, pure SVG math.",
   "type": "module",
   "main": "src/avataurus.js",
   "module": "src/avataurus.js",
@@ -30,8 +30,8 @@
     "svg",
     "web-component",
     "cloudflare-worker",
-    "dinosaur",
-    "dino",
+    "minimal",
+    "face",
     "profile-picture",
     "hash"
   ],

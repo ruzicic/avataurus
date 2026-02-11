@@ -25,33 +25,46 @@ describe('generateAvatar', () => {
     const svg = generateAvatar('test', { size: 256 });
     expect(svg).toContain('width="256"');
     expect(svg).toContain('height="256"');
+    expect(svg).toContain('viewBox="0 0 256 256"');
   });
 
-  it('respects variant option', () => {
-    const gradient = generateAvatar('test', { variant: 'gradient' });
-    const solid = generateAvatar('test', { variant: 'solid' });
-    expect(gradient).not.toBe(solid);
-    expect(gradient).toContain('linearGradient');
+  it('respects variant option - face variant', () => {
+    const face = generateAvatar('test', { variant: 'face' });
+    expect(face).toContain('<svg');
+    // Face variant should not contain text elements (just visual elements)
+    expect(face).not.toContain('<text');
   });
 
-  it('respects showInitial option', () => {
-    const withInitial = generateAvatar('Alice', { showInitial: true });
-    const without = generateAvatar('Alice', { showInitial: false });
-    expect(withInitial).toContain('<text');
-    expect(withInitial).toContain('>A</text>');
-    expect(without).not.toContain('<text');
+  it('respects variant option - initial variant', () => {
+    const initial = generateAvatar('Alice', { variant: 'initial' });
+    expect(initial).toContain('<text');
+    expect(initial).toContain('>A</text>');
+    expect(initial).toContain('monospace');
+  });
+
+  it('different variants produce different outputs', () => {
+    const face = generateAvatar('test', { variant: 'face' });
+    const initial = generateAvatar('test', { variant: 'initial' });
+    expect(face).not.toBe(initial);
   });
 
   it('respects custom colors', () => {
-    const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFFFF'];
+    const colors = ['#FF0000'];
     const svg = generateAvatar('test', { colors });
     expect(svg).toContain('#FF0000');
-    expect(svg).toContain('#00FF00');
   });
 
   it('handles empty string', () => {
     const svg = generateAvatar('');
     expect(svg).toContain('<svg');
+  });
+
+  it('handles null/undefined seed', () => {
+    const svg1 = generateAvatar(null);
+    const svg2 = generateAvatar(undefined);
+    expect(svg1).toContain('<svg');
+    expect(svg2).toContain('<svg');
+    expect(svg1).toBe(svg2); // Both should default to 'anonymous'
   });
 
   it('handles very long string', () => {
@@ -68,6 +81,8 @@ describe('generateAvatar', () => {
   it('handles special characters', () => {
     const svg = generateAvatar('<script>alert("xss")</script>');
     expect(svg).toContain('<svg');
+    // Should not contain raw script content in SVG
+    expect(svg).not.toContain('<script>');
   });
 
   it('unicode inputs are deterministic', () => {
@@ -80,5 +95,43 @@ describe('generateAvatar', () => {
     const svg = generateAvatar('test');
     expect(svg).toContain('width="128"');
     expect(svg).toContain('height="128"');
+  });
+
+  it('default variant is face', () => {
+    const svg = generateAvatar('test');
+    expect(svg).not.toContain('<text'); // face variant has no text
+  });
+
+  it('produces different eyes for different inputs', () => {
+    // Generate multiple avatars and ensure they're different
+    const avatars = ['alice', 'bob', 'charlie', 'diana', 'elena'].map(name => 
+      generateAvatar(name, { variant: 'face' })
+    );
+    
+    // All should be different
+    for (let i = 0; i < avatars.length; i++) {
+      for (let j = i + 1; j < avatars.length; j++) {
+        expect(avatars[i]).not.toBe(avatars[j]);
+      }
+    }
+  });
+
+  it('initial variant shows first character in uppercase', () => {
+    const svg = generateAvatar('hello', { variant: 'initial' });
+    expect(svg).toContain('>H</text>');
+    
+    const svg2 = generateAvatar('world', { variant: 'initial' });
+    expect(svg2).toContain('>W</text>');
+  });
+
+  it('contains background gradient', () => {
+    const svg = generateAvatar('test');
+    expect(svg).toContain('radialGradient');
+    expect(svg).toContain('<defs>');
+  });
+
+  it('contains feature color for eyes and elements', () => {
+    const svg = generateAvatar('test');
+    expect(svg).toContain('#1a1a2e'); // FEATURE_COLOR
   });
 });

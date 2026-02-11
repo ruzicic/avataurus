@@ -1,13 +1,12 @@
 /**
  * Avataurus Web Component
- * <avataurus name="john" size="48" variant="gradient" show-initial></avataurus>
+ * <avataurus seed="john" size="48" variant="face"></avataurus>
  *
  * Attributes:
- *   name       - String to generate avatar from
+ *   seed       - String to generate avatar from (required)
  *   size       - Pixel size (default: 48)
- *   variant    - 'gradient' or 'solid'
- *   show-initial - Show first letter overlay
- *   colors     - JSON array of 4 colors
+ *   variant    - 'face' (default) or 'initial'
+ *   colors     - Comma-separated color values
  *   no-hover   - Disable hover animation
  */
 
@@ -15,7 +14,7 @@ import { generateAvatar } from './avataurus.js';
 
 class AvataurusEl extends HTMLElement {
   static get observedAttributes() {
-    return ['name', 'size', 'colors', 'variant', 'show-initial', 'no-hover', 'mood', 'species'];
+    return ['seed', 'size', 'variant', 'colors', 'no-hover'];
   }
 
   constructor() {
@@ -32,25 +31,19 @@ class AvataurusEl extends HTMLElement {
   }
 
   render() {
-    const name = this.getAttribute('name') || 'anonymous';
+    const seed = this.getAttribute('seed') || 'anonymous';
     const size = parseInt(this.getAttribute('size') || '48', 10);
-    const variant = this.getAttribute('variant') || 'gradient';
-    const showInitial = this.hasAttribute('show-initial');
+    const variant = this.getAttribute('variant') || 'face';
     const noHover = this.hasAttribute('no-hover');
+    
+    // Parse colors from comma-separated string
     const colorsAttr = this.getAttribute('colors');
     let colors = null;
     if (colorsAttr) {
-      try {
-        colors = JSON.parse(colorsAttr);
-      } catch (_e) {
-        /* ignore */
-      }
+      colors = colorsAttr.split(',').map(c => c.trim()).filter(Boolean);
     }
 
-    const mood = this.getAttribute('mood') || null;
-    const species = this.getAttribute('species') || null;
-
-    const svg = generateAvatar(name, { size, colors, showInitial, variant, mood, species });
+    const svg = generateAvatar(seed, { size, variant, colors });
 
     this.shadowRoot.innerHTML = `
       <style>

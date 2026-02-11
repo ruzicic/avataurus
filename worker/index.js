@@ -16,33 +16,39 @@ export default {
       });
     }
 
-    // Favicon
+    // Favicon - use actual avataurus instead of emoji
     if (path === '/favicon.ico') {
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🦕</text></svg>`;
+      const svg = generateAvatar('avataurus', { size: 32, variant: 'initial' });
       return new Response(svg, {
-        headers: { 'Content-Type': 'image/svg+xml', 'Cache-Control': 'public, max-age=31536000, immutable' },
+        headers: { 
+          'Content-Type': 'image/svg+xml', 
+          'Cache-Control': 'public, max-age=31536000, immutable' 
+        },
       });
     }
 
-    // Avatar route: /:name
-    const name = path.slice(1); // remove leading /
-    if (!name) {
-      return new Response('Name required', { status: 400 });
+    // Handle .svg extension
+    let seed = path.slice(1);
+    if (seed.endsWith('.svg')) {
+      seed = seed.slice(0, -4);
+    }
+
+    if (!seed) {
+      return new Response('Seed required', { status: 400 });
     }
 
     const size = parseInt(url.searchParams.get('size') || '128', 10);
-    const variant = url.searchParams.get('variant') || 'gradient';
-    const showInitial = url.searchParams.get('initial') === 'true';
-    const mood = url.searchParams.get('mood') || null;
-    const species = url.searchParams.get('species') || null;
+    const variant = url.searchParams.get('variant') || 'face';
     const clampedSize = Math.min(Math.max(size, 16), 512);
 
-    const svg = generateAvatar(name, {
+    // Validate variant
+    if (!['face', 'initial'].includes(variant)) {
+      return new Response('Invalid variant. Use "face" or "initial".', { status: 400 });
+    }
+
+    const svg = generateAvatar(seed, {
       size: clampedSize,
       variant,
-      showInitial,
-      mood,
-      species,
     });
 
     return new Response(svg, {

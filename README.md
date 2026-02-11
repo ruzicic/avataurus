@@ -1,23 +1,23 @@
 <div align="center">
 
-# 🦕 Avataurus
+# Avataurus
 
-**Every string hatches a different dino.**
+**Minimal face avatars from pure math**
 
 [![npm version](https://img.shields.io/npm/v/avataurus.svg)](https://www.npmjs.com/package/avataurus)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/avataurus)](https://bundlephobia.com/package/avataurus)
 [![license](https://img.shields.io/npm/l/avataurus.svg)](./LICENSE)
 [![CI](https://github.com/ruzicic/avataurus/actions/workflows/ci.yml/badge.svg)](https://github.com/ruzicic/avataurus/actions/workflows/ci.yml)
 
-**1.7B+ unique phenotypes · Self-contained · 4KB gzipped**
+**Deterministic · Zero Dependencies · 4KB gzipped**
 
-[**Dig site →**](https://avataurus.com)
+[**Try it live →**](https://avataurus.com)
 
 </div>
 
 ---
 
-Feed it a string, get back a one-of-a-kind dinosaur face. Same string, same dino — today, tomorrow, heat death of the universe. Pure SVG, no network requests, no database. Just math and reptiles.
+Feed it any string, get back a unique minimal face avatar. Same input, same face — forever. Pure SVG generated from deterministic math, no network requests, no database.
 
 ## Install
 
@@ -27,33 +27,32 @@ npm i avataurus
 
 ## Usage
 
-### Image URL — point an `<img>` at the dig site
+### Image URL — point an `<img>` at the service
 
 ```html
-<img src="https://avataurus.com/your-username" width="64" height="64" />
+<img src="https://avataurus.com/your-username" width="64" height="64" alt="Avatar" />
 ```
 
-Query params: `?size=128&variant=solid&initial=true&mood=happy&species=rex`
+Query params: `?size=128&variant=initial`
 
-### Web Component — drop in an `<avataurus-el>`
+### Web Component — drop in an `<avataurus>`
 
 ```html
 <script type="module">
   import 'avataurus/element'
 </script>
 
-<avataurus-el name="jane" size="64"></avataurus-el>
-<avataurus-el name="john" size="48" variant="solid" show-initial></avataurus-el>
-<avataurus-el name="angry-rex" mood="angry" species="rex"></avataurus-el>
-<avataurus-el name="chill-bronto" mood="chill" species="bronto"></avataurus-el>
+<avataurus seed="jane" size="64"></avataurus>
+<avataurus seed="john" size="48" variant="initial"></avataurus>
+<avataurus seed="team" size="32" no-hover></avataurus>
 ```
 
-### JavaScript API — hatch one in code
+### JavaScript API — generate in code
 
 ```js
 import { generateAvatar } from 'avataurus'
 
-const svg = generateAvatar('jane', { size: 128, mood: 'happy', species: 'stego' })
+const svg = generateAvatar('jane', { size: 128, variant: 'initial' })
 document.getElementById('avatar').innerHTML = svg
 ```
 
@@ -62,38 +61,81 @@ document.getElementById('avatar').innerHTML = svg
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
 | `size` | `number` | `128` | Avatar size in pixels |
-| `variant` | `'gradient' \| 'solid'` | `'gradient'` | Fill style for the head |
-| `showInitial` | `boolean` | `false` | Overlay first letter of the name |
-| `colors` | `[string, string, string, string]` | auto | Custom palette `[main, secondary, light, bg]` |
-| `mood` | `string` | auto | Temperament: `happy` `angry` `sleepy` `surprised` `chill` |
-| `species` | `string` | auto | Clade: `rex` `triceratops` `stego` `raptor` `bronto` |
+| `variant` | `'face' \| 'initial'` | `'face'` | Eyes + mouth or eyes + letter |
+| `colors` | `string[]` | auto | Custom color palette |
 
-When `mood` or `species` are omitted, the hash determines them — fully deterministic, no dice rolls.
+### Variants
+
+- **`face`** (default): Eyes + mouth expressions on colored backgrounds
+- **`initial`**: Eyes + first letter of the input string in monospace font
 
 ### Web Component Attributes
 
 | Attribute | Description |
 |-----------|-------------|
-| `name` | String to hatch a dino from |
+| `seed` | String to generate avatar from (required) |
 | `size` | Pixel size (default: `48`) |
-| `variant` | `gradient` or `solid` |
-| `show-initial` | Show first letter overlay |
-| `colors` | JSON array of 4 hex colors |
-| `mood` | `happy` `angry` `sleepy` `surprised` `chill` |
-| `species` | `rex` `triceratops` `stego` `raptor` `bronto` |
+| `variant` | `face` or `initial` |
+| `colors` | Comma-separated color values |
 | `no-hover` | Disable hover animation |
 
 ## How It Works
 
-Avataurus runs your string through three hash functions (FNV-1a, DJB2, SDBM) and extracts bits to select from 13 independent trait layers: head shape, spikes, eyes, eyebrows, mouth, nose, cheeks, ears, face markings, accessories, belly patch, tail, and background pattern.
+Avataurus runs your string through hash functions and extracts bits to deterministically select:
 
-The result is a unique phenotype from a genome of 1.7 billion+ combinations. No API calls, no storage, no randomness — the string *is* the identity.
+- **Background color** from a curated 22-color palette
+- **Eye shape** from 8 types (dots, ovals, arcs, lines, diamonds, crosses, half-moons, rectangles)
+- **Eye spacing** and **vertical position** for natural variation
+- **Mouth shape** from 4 expressions (smile, line, circle, frown) or **initial letter**
+
+The result is a unique avatar from millions of possible combinations. No API calls, no storage, no randomness — the string *is* the identity.
+
+## Features
+
+- **Deterministic**: Same input always produces the same output
+- **Zero dependencies**: No external libraries or fonts required
+- **Scalable**: Pure SVG that looks crisp at any size
+- **Lightweight**: 4KB gzipped, loads instantly
+- **Edge-native**: Runs on Cloudflare Workers worldwide
+- **Accessible**: Proper alt text and keyboard navigation support
 
 ## Runs Everywhere
 
-- **Browser:** Any modern browser (ES2020+)
-- **Node.js:** 18+
-- **Edge:** Cloudflare Workers, Deno, Bun
+- **Browser**: Any modern browser (ES2020+)
+- **Node.js**: 18+
+- **Edge**: Cloudflare Workers, Deno, Bun
+
+## Examples
+
+```js
+// Basic face avatar
+generateAvatar('alice')
+
+// Initial variant
+generateAvatar('bob', { variant: 'initial' })
+
+// Custom size
+generateAvatar('charlie', { size: 256 })
+
+// Custom colors
+generateAvatar('diana', { colors: ['#FF6B6B', '#4ECDC4'] })
+```
+
+## TypeScript
+
+Full TypeScript support included:
+
+```ts
+import { generateAvatar, type AvatarOptions } from 'avataurus'
+
+const options: AvatarOptions = {
+  size: 128,
+  variant: 'initial',
+  colors: ['#264653']
+}
+
+const svg: string = generateAvatar('user123', options)
+```
 
 ## Contributing
 
