@@ -2,20 +2,22 @@
 
 # 🦕 Avataurus
 
-**Deterministic SVG avatar generator — unique dinosaur-inspired faces from any string.**
+**Every string hatches a different dino.**
 
 [![npm version](https://img.shields.io/npm/v/avataurus.svg)](https://www.npmjs.com/package/avataurus)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/avataurus)](https://bundlephobia.com/package/avataurus)
 [![license](https://img.shields.io/npm/l/avataurus.svg)](./LICENSE)
 [![CI](https://github.com/ruzicic/avataurus/actions/workflows/ci.yml/badge.svg)](https://github.com/ruzicic/avataurus/actions/workflows/ci.yml)
 
-**1.7B+ unique combinations · Zero dependencies · 4KB gzipped**
+**1.7B+ unique phenotypes · Self-contained · 4KB gzipped**
 
-[**Try it live →**](https://avataurus.com)
+[**Dig site →**](https://avataurus.com)
 
 </div>
 
 ---
+
+Feed it a string, get back a one-of-a-kind dinosaur face. Same string, same dino — today, tomorrow, heat death of the universe. Pure SVG, no network requests, no database. Just math and reptiles.
 
 ## Install
 
@@ -25,7 +27,7 @@ npm i avataurus
 
 ## Usage
 
-### Image URL
+### Image URL — point an `<img>` at the dig site
 
 ```html
 <img src="https://avataurus.com/your-username" width="64" height="64" />
@@ -33,7 +35,7 @@ npm i avataurus
 
 Query params: `?size=128&variant=solid&initial=true&mood=happy&species=rex`
 
-### Web Component
+### Web Component — drop in an `<avataurus-el>`
 
 ```html
 <script type="module">
@@ -46,7 +48,7 @@ Query params: `?size=128&variant=solid&initial=true&mood=happy&species=rex`
 <avataurus-el name="chill-bronto" mood="chill" species="bronto"></avataurus-el>
 ```
 
-### JavaScript API
+### JavaScript API — hatch one in code
 
 ```js
 import { generateAvatar } from 'avataurus'
@@ -63,16 +65,16 @@ document.getElementById('avatar').innerHTML = svg
 | `variant` | `'gradient' \| 'solid'` | `'gradient'` | Fill style for the head |
 | `showInitial` | `boolean` | `false` | Overlay first letter of the name |
 | `colors` | `[string, string, string, string]` | auto | Custom palette `[main, secondary, light, bg]` |
-| `mood` | `string` | auto | Expression: `happy` `angry` `sleepy` `surprised` `chill` |
-| `species` | `string` | auto | Dino type: `rex` `triceratops` `stego` `raptor` `bronto` |
+| `mood` | `string` | auto | Temperament: `happy` `angry` `sleepy` `surprised` `chill` |
+| `species` | `string` | auto | Clade: `rex` `triceratops` `stego` `raptor` `bronto` |
 
-When `mood` or `species` are omitted, the hash determines them automatically (fully deterministic).
+When `mood` or `species` are omitted, the hash determines them — fully deterministic, no dice rolls.
 
 ### Web Component Attributes
 
 | Attribute | Description |
 |-----------|-------------|
-| `name` | String to generate avatar from |
+| `name` | String to hatch a dino from |
 | `size` | Pixel size (default: `48`) |
 | `variant` | `gradient` or `solid` |
 | `show-initial` | Show first letter overlay |
@@ -83,11 +85,11 @@ When `mood` or `species` are omitted, the hash determines them automatically (fu
 
 ## How It Works
 
-Avataurus hashes the input string using FNV-1a, DJB2, and SDBM to extract bits that deterministically select from 13 independent feature layers: head shape, spikes, eyes, eyebrows, mouth, nose, cheeks, ears, face markings, accessories, belly patch, tail, and background pattern.
+Avataurus runs your string through three hash functions (FNV-1a, DJB2, SDBM) and extracts bits to select from 13 independent trait layers: head shape, spikes, eyes, eyebrows, mouth, nose, cheeks, ears, face markings, accessories, belly patch, tail, and background pattern.
 
-Same input = same avatar. Always. No API calls, no storage, no randomness.
+The result is a unique phenotype from a genome of 1.7 billion+ combinations. No API calls, no storage, no randomness — the string *is* the identity.
 
-## Compatibility
+## Runs Everywhere
 
 - **Browser:** Any modern browser (ES2020+)
 - **Node.js:** 18+

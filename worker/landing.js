@@ -31,7 +31,7 @@ export function landingPage(generateAvatar) {
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Avataurus — Deterministic Dino Avatar Generator</title>
-<meta name="description" content="Generate unique, beautiful dinosaur-themed avatar faces from any string. Deterministic, zero dependencies, runs on the edge."/>
+<meta name="description" content="Every string hatches a different dino. Deterministic SVG avatar generator — 1.7 billion unique species from pure math. No dependencies, edge-native."/>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦕</text></svg>"/>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -171,21 +171,21 @@ footer .claw{font-size:0.65rem;margin-top:8px;opacity:0.4;letter-spacing:0.3em}
   </header>
 
   <section class="hero">
-    <h1>Dino avatars from<br/><span class="highlight">any string</span></h1>
-    <p>Deterministic, dinosaur-inspired avatar faces with billions of unique combinations. Same input, same face. Zero dependencies. Runs on the edge.</p>
+    <h1>Every name hatches<br/><span class="highlight">a different dino</span></h1>
+    <p>Feed it a string, get back a one-of-a-kind dinosaur face. Same string, same dino — forever. Carved from pure SVG, no network requests, no database. Just math and reptiles.</p>
     <div class="stats">
-      <div class="stat"><strong>1.7B+</strong><span>Combinations</span></div>
-      <div class="stat"><strong>0</strong><span>Dependencies</span></div>
-      <div class="stat"><strong>&lt;2ms</strong><span>Generation</span></div>
-      <div class="stat"><strong>13</strong><span>Feature Layers</span></div>
+      <div class="stat"><strong>1.7B+</strong><span>Distinct Species</span></div>
+      <div class="stat"><strong>0</strong><span>Ext. Dependencies</span></div>
+      <div class="stat"><strong>&lt;2ms</strong><span>Incubation Time</span></div>
+      <div class="stat"><strong>13</strong><span>Trait Layers</span></div>
     </div>
   </section>
 
   <div class="demo-card">
-    <div class="demo-label">Live Specimen Generator</div>
+    <div class="demo-label">Excavation Site — Live Dig</div>
     <div class="demo-avatar" id="demoAvatar"></div>
     <div class="demo-input-wrap">
-      <input class="demo-input" id="demoInput" type="text" placeholder="Type any string..." value="avataurus" autocomplete="off"/>
+      <input class="demo-input" id="demoInput" type="text" placeholder="Name your specimen..." value="avataurus" autocomplete="off"/>
     </div>
     <div class="demo-variants" id="demoVariants"></div>
   </div>
@@ -194,8 +194,8 @@ footer .claw{font-size:0.65rem;margin-top:8px;opacity:0.4;letter-spacing:0.3em}
 
   <section class="section strata-section">
     <div class="section-head">
-      <h2>Gallery</h2>
-      <p>Every string produces a unique specimen — 20 examples</p>
+      <h2>The Fossil Record</h2>
+      <p>20 specimens unearthed from the hash layer</p>
     </div>
     <div class="gallery">
       ${exampleSvgs.map((e) => `<div class="gallery-item"><img src="data:image/svg+xml;base64,${e.svg64}" width="80" height="80" alt="${e.name}" loading="lazy"/><span>${e.name}</span></div>`).join('')}
@@ -204,8 +204,8 @@ footer .claw{font-size:0.65rem;margin-top:8px;opacity:0.4;letter-spacing:0.3em}
 
   <section class="section strata-section">
     <div class="section-head">
-      <h2>Sizes</h2>
-      <p>Pixel-perfect at any scale</p>
+      <h2>Scale</h2>
+      <p>From thumbnail to trophy — sharp at every size</p>
     </div>
     <div class="sizes">
       ${sizeDemos.map((s) => `<div class="size-item"><img src="data:image/svg+xml;base64,${s.svg64}" width="${s.size}" height="${s.size}" alt="${s.size}px"/><span>${s.size}px</span></div>`).join('')}
@@ -214,8 +214,8 @@ footer .claw{font-size:0.65rem;margin-top:8px;opacity:0.4;letter-spacing:0.3em}
 
   <section class="section strata-section">
     <div class="section-head">
-      <h2>Moods</h2>
-      <p>Override expressions with mood presets</p>
+      <h2>Temperament</h2>
+      <p>Same dino, different day — override the expression</p>
     </div>
     <div class="gallery">
       ${moodDemos.map((m) => `<div class="gallery-item"><img src="data:image/svg+xml;base64,${m.svg64}" width="64" height="64" alt="${m.mood}"/><span>${m.mood}</span></div>`).join('')}
@@ -224,8 +224,8 @@ footer .claw{font-size:0.65rem;margin-top:8px;opacity:0.4;letter-spacing:0.3em}
 
   <section class="section strata-section">
     <div class="section-head">
-      <h2>Species</h2>
-      <p>Different dino types for unique spikes, ears, and tails</p>
+      <h2>Clade</h2>
+      <p>Force a lineage — each species brings its own silhouette</p>
     </div>
     <div class="gallery">
       ${speciesDemos.map((s) => `<div class="gallery-item"><img src="data:image/svg+xml;base64,${s.svg64}" width="64" height="64" alt="${s.species}"/><span>${s.species}</span></div>`).join('')}
@@ -234,8 +234,8 @@ footer .claw{font-size:0.65rem;margin-top:8px;opacity:0.4;letter-spacing:0.3em}
 
   <section class="section strata-section">
     <div class="section-head">
-      <h2>Usage</h2>
-      <p>Multiple ways to integrate Avataurus</p>
+      <h2>Hatch Your Own</h2>
+      <p>URL, web component, or raw JS — pick your dig tool</p>
     </div>
     <div class="code-tabs">
       <button class="code-tab active" onclick="showTab(0)">Image URL</button>
@@ -251,20 +251,20 @@ footer .claw{font-size:0.65rem;margin-top:8px;opacity:0.4;letter-spacing:0.3em}
 
   <section class="section strata-section">
     <div class="section-head">
-      <h2>Why Avataurus?</h2>
+      <h2>Built Different</h2>
     </div>
     <div class="features">
-      <div class="feature"><div class="icon">⚡</div><h3>Blazing Fast</h3><p>Pure SVG generation with zero external requests. Runs on Cloudflare's edge in 200+ cities.</p></div>
-      <div class="feature"><div class="icon">🎯</div><h3>Deterministic</h3><p>Same input always produces the same avatar. No randomness, no databases, no state.</p></div>
-      <div class="feature"><div class="icon">🦕</div><h3>1.7B+ Combinations</h3><p>13 feature layers including eyebrows, ears, markings, accessories, and tails.</p></div>
-      <div class="feature"><div class="icon">📦</div><h3>Zero Dependencies</h3><p>Vanilla JavaScript. No frameworks. Works everywhere — browser, Node.js, Workers.</p></div>
-      <div class="feature"><div class="icon">🔌</div><h3>Web Component</h3><p>Drop-in &lt;avataurus-el&gt; with hover animations and Shadow DOM. Works in any framework.</p></div>
-      <div class="feature"><div class="icon">♾️</div><h3>Cache Forever</h3><p>Immutable by design. Same URL always returns the same image. Cache it forever.</p></div>
+      <div class="feature"><div class="icon">🦴</div><h3>Edge-Native</h3><p>Generates pure SVG on Cloudflare's edge — 200+ cities, no origin server. Your dino materializes at the nearest data center.</p></div>
+      <div class="feature"><div class="icon">🪨</div><h3>Fossilized Output</h3><p>Same string in, same dino out. Today, tomorrow, heat death of the universe. No randomness, no database, no state.</p></div>
+      <div class="feature"><div class="icon">🧬</div><h3>Deep Genome</h3><p>13 independent trait layers — head, spikes, eyes, mouth, markings, accessories, tail, and more. 1.7 billion unique phenotypes.</p></div>
+      <div class="feature"><div class="icon">🥚</div><h3>Self-Contained</h3><p>Ships nothing but itself. No frameworks, no transitive deps, no supply chain anxiety. 4KB gzipped.</p></div>
+      <div class="feature"><div class="icon">🔬</div><h3>Drop-In Element</h3><p>&lt;avataurus-el&gt; — a web component with Shadow DOM isolation and hover animation. Plays nice with every framework or none.</p></div>
+      <div class="feature"><div class="icon">🏔️</div><h3>Immutable Like Amber</h3><p>Once a dino is born, it never changes. Cache the URL for a geological age. The hash is the identity.</p></div>
     </div>
   </section>
 
   <footer>
-    <p>Built by <a href="https://github.com/ruzicic">mladen</a> · <a href="https://github.com/ruzicic/avataurus">GitHub</a> · <a href="https://www.npmjs.com/package/avataurus">npm</a> · MIT License</p>
+    <p>Excavated by <a href="https://github.com/ruzicic">mladen</a> · <a href="https://github.com/ruzicic/avataurus">Source</a> · <a href="https://www.npmjs.com/package/avataurus">npm</a> · MIT License</p>
     <div class="claw">///</div>
   </footer>
 </div>
