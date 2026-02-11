@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="#FB8B24"/>
+  <radialGradient id="g97717" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="white" stop-opacity="0.15"/><stop offset="100%" stop-color="black" stop-opacity="0.1"/></radialGradient>
+  <rect width="128" height="128" fill="url(#g97717)"/>
+  <line x1="44.28125" y1="51.75" x2="54.03125" y2="61.5" stroke="#1a1a2e" stroke-width="2.4375" stroke-linecap="round"/><line x1="54.03125" y1="51.75" x2="44.28125" y2="61.5" stroke="#1a1a2e" stroke-width="2.4375" stroke-linecap="round"/><line x1="73.96875" y1="51.75" x2="83.71875" y2="61.5" stroke="#1a1a2e" stroke-width="2.4375" stroke-linecap="round"/><line x1="83.71875" y1="51.75" x2="73.96875" y2="61.5" stroke="#1a1a2e" stroke-width="2.4375" stroke-linecap="round"/>
+  <circle cx="64" cy="83.375" r="4" fill="none" stroke="#1a1a2e" stroke-width="2"/>
+</svg>
