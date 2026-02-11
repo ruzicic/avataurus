@@ -25,6 +25,16 @@ Feed it any string, get back a unique minimal face avatar. Same input, same face
 npm i avataurus
 ```
 
+Or use a CDN:
+
+```html
+<!-- unpkg -->
+<script type="module" src="https://unpkg.com/avataurus/src/element.js"></script>
+
+<!-- jsdelivr -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/avataurus/src/element.js"></script>
+```
+
 ## Usage
 
 ### Image URL — point an `<img>` at the service
@@ -143,4 +153,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and guidelines.
 
 ## License
 
-[MIT](./LICENSE) © mladen
+[MIT](./LICENSE) © [Mladen Ruzicic](https://mladenruzicic.com)

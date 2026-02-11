@@ -35,7 +35,8 @@
     "profile-picture",
     "hash"
   ],
-  "author": "mladen",
+  "author": "Mladen Ruzicic (https://mladenruzicic.com)",
+  "unpkg": "src/avataurus.js",
   "license": "MIT",
   "repository": {
     "type": "git",
