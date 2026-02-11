@@ -32,6 +32,18 @@ export function landingPage(generateAvatar) {
     svg64: btoa(generateAvatar('demo', { size: s })),
   }));
 
+  const moods = ['happy', 'angry', 'sleepy', 'surprised', 'chill'];
+  const moodDemos = moods.map((m) => ({
+    mood: m,
+    svg64: btoa(generateAvatar('demo', { size: 64, mood: m })),
+  }));
+
+  const species = ['rex', 'triceratops', 'stego', 'raptor', 'bronto'];
+  const speciesDemos = species.map((s) => ({
+    species: s,
+    svg64: btoa(generateAvatar('demo', { size: 64, species: s })),
+  }));
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -166,6 +178,22 @@ footer{padding:40px 0;text-align:center;color:var(--muted);font-size:0.85rem;bor
   </section>
 
   <section class="section">
+    <h2>Moods</h2>
+    <p class="sub">Override the expression with a mood preset</p>
+    <div class="gallery">
+      ${moodDemos.map((m) => `<div class="gallery-item"><img src="data:image/svg+xml;base64,${m.svg64}" width="64" height="64" alt="${m.mood}"/><span>${m.mood}</span></div>`).join('')}
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Species</h2>
+    <p class="sub">Choose a dino type for different spikes, ears, and tails</p>
+    <div class="gallery">
+      ${speciesDemos.map((s) => `<div class="gallery-item"><img src="data:image/svg+xml;base64,${s.svg64}" width="64" height="64" alt="${s.species}"/><span>${s.species}</span></div>`).join('')}
+    </div>
+  </section>
+
+  <section class="section">
     <h2>Usage</h2>
     <p class="sub">Multiple ways to use Avataurus</p>
     <div class="code-tabs">
@@ -187,7 +215,7 @@ footer{padding:40px 0;text-align:center;color:var(--muted);font-size:0.85rem;bor
       <div class="feature"><div class="icon">🎯</div><h3>Deterministic</h3><p>Same input always produces the same avatar. No randomness, no databases, no state.</p></div>
       <div class="feature"><div class="icon">🦕</div><h3>1.7B+ Combinations</h3><p>13 feature layers including eyebrows, ears, markings, accessories, tails. Every avatar feels unique.</p></div>
       <div class="feature"><div class="icon">📦</div><h3>Zero Dependencies</h3><p>Vanilla JavaScript. No React, no frameworks. Works everywhere — browser, Node.js, Workers.</p></div>
-      <div class="feature"><div class="icon">🔌</div><h3>Web Component</h3><p>Drop-in &lt;avataurus&gt; element with hover animations and Shadow DOM isolation. Works in any framework.</p></div>
+      <div class="feature"><div class="icon">🔌</div><h3>Web Component</h3><p>Drop-in &lt;avataurus-el&gt; element with hover animations and Shadow DOM isolation. Works in any framework.</p></div>
       <div class="feature"><div class="icon">♾️</div><h3>Cache Forever</h3><p>Immutable by design. Cache responses forever — the same URL always returns the same image.</p></div>
     </div>
   </section>
@@ -214,20 +242,18 @@ function toggleTheme(){
 
 const codes=[
   \`<!-- Use as an image URL -->
-<img src="https://avataurus.workers.dev/john" width="48" height="48" />
+<img src="https://avataurus.com/john" width="48" height="48" />
 
 <!-- With options -->
-<img src="https://avataurus.workers.dev/john?size=128&variant=solid&initial=true" />\`,
+<img src="https://avataurus.com/john?size=128&variant=solid&initial=true" />\`,
   \`<!-- Load the web component -->
 <script type="module" src="https://unpkg.com/avataurus/src/element.js"><\\/script>
 
 <!-- Use it! -->
-<avataurus name="john" size="48"></avataurus>
-<avataurus name="jane" size="64" variant="solid"></avataurus>
-<avataurus name="bob" size="48" show-initial></avataurus>
-
-<!-- Disable hover animation -->
-<avataurus name="static" size="48" no-hover></avataurus>\`,
+<avataurus-el name="john" size="48"></avataurus-el>
+<avataurus-el name="jane" size="64" variant="solid"></avataurus-el>
+<avataurus-el name="bob" mood="happy" species="rex"></avataurus-el>
+<avataurus-el name="chill" mood="chill" species="bronto"></avataurus-el>\`,
   \`import { generateAvatar } from 'avataurus';
 
 // Generate SVG string
@@ -278,11 +304,13 @@ function updateDemo(){
     const sp=document.createElement('span');sp.textContent=v;d.appendChild(sp);
     demoVariants.appendChild(d);
   });
-  const d2=document.createElement('div');d2.className='demo-variant';
-  const i3=document.createElement('img');i3.src='/'+encodeURIComponent(name)+'?size=64&initial=true';
-  i3.width=64;i3.height=64;i3.style.borderRadius='20%';d2.appendChild(i3);
-  const sp2=document.createElement('span');sp2.textContent='with initial';d2.appendChild(sp2);
-  demoVariants.appendChild(d2);
+  ['happy','angry','chill'].forEach(m=>{
+    const d=document.createElement('div');d.className='demo-variant';
+    const i2=document.createElement('img');i2.src='/'+encodeURIComponent(name)+'?size=64&mood='+m;
+    i2.width=64;i2.height=64;i2.style.borderRadius='20%';d.appendChild(i2);
+    const sp=document.createElement('span');sp.textContent=m;d.appendChild(sp);
+    demoVariants.appendChild(d);
+  });
 }
 demoInput.addEventListener('input',updateDemo);
 updateDemo();

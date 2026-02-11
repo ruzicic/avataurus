@@ -25,13 +25,13 @@ npm i avataurus
 
 ## Usage
 
-### Image URL (Cloudflare Worker)
+### Image URL
 
 ```html
-<img src="https://avataurus.com/avatar/your-username" width="64" height="64" />
+<img src="https://avataurus.com/your-username" width="64" height="64" />
 ```
 
-Supports query params: `?size=128&variant=gradient&showInitial=true`
+Query params: `?size=128&variant=solid&initial=true&mood=happy&species=rex`
 
 ### Web Component
 
@@ -41,7 +41,9 @@ Supports query params: `?size=128&variant=gradient&showInitial=true`
 </script>
 
 <avataurus-el name="jane" size="64"></avataurus-el>
-<avataurus-el name="john" size="64" variant="solid" show-initial></avataurus-el>
+<avataurus-el name="john" size="48" variant="solid" show-initial></avataurus-el>
+<avataurus-el name="angry-rex" mood="angry" species="rex"></avataurus-el>
+<avataurus-el name="chill-bronto" mood="chill" species="bronto"></avataurus-el>
 ```
 
 ### JavaScript API
@@ -49,7 +51,7 @@ Supports query params: `?size=128&variant=gradient&showInitial=true`
 ```js
 import { generateAvatar } from 'avataurus'
 
-const svg = generateAvatar('jane', { size: 128 })
+const svg = generateAvatar('jane', { size: 128, mood: 'happy', species: 'stego' })
 document.getElementById('avatar').innerHTML = svg
 ```
 
@@ -60,7 +62,11 @@ document.getElementById('avatar').innerHTML = svg
 | `size` | `number` | `128` | Avatar size in pixels |
 | `variant` | `'gradient' \| 'solid'` | `'gradient'` | Fill style for the head |
 | `showInitial` | `boolean` | `false` | Overlay first letter of the name |
-| `colors` | `[string, string, string, string]` | auto | Custom color palette `[main, secondary, light, bg]` |
+| `colors` | `[string, string, string, string]` | auto | Custom palette `[main, secondary, light, bg]` |
+| `mood` | `string` | auto | Expression: `happy` `angry` `sleepy` `surprised` `chill` |
+| `species` | `string` | auto | Dino type: `rex` `triceratops` `stego` `raptor` `bronto` |
+
+When `mood` or `species` are omitted, the hash determines them automatically (fully deterministic).
 
 ### Web Component Attributes
 
@@ -71,13 +77,15 @@ document.getElementById('avatar').innerHTML = svg
 | `variant` | `gradient` or `solid` |
 | `show-initial` | Show first letter overlay |
 | `colors` | JSON array of 4 hex colors |
+| `mood` | `happy` `angry` `sleepy` `surprised` `chill` |
+| `species` | `rex` `triceratops` `stego` `raptor` `bronto` |
 | `no-hover` | Disable hover animation |
 
 ## How It Works
 
 Avataurus hashes the input string using FNV-1a, DJB2, and SDBM to extract bits that deterministically select from 13 independent feature layers: head shape, spikes, eyes, eyebrows, mouth, nose, cheeks, ears, face markings, accessories, belly patch, tail, and background pattern.
 
-Same input → same avatar. Always.
+Same input = same avatar. Always. No API calls, no storage, no randomness.
 
 ## Compatibility
 
