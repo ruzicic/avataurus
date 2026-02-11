@@ -48,6 +48,16 @@ const COLORS = [
   '#D4A87C', // Warm sand
   '#E8C49A', // Muted gold
   '#6B7B6E', // Muted sage
+  '#C17A5E', // Burnt sienna
+  '#B86B4A', // Copper clay
+  '#D49B6A', // Adobe tan
+  '#5E7E8C', // Storm gray
+  '#4A6B7A', // Steel blue
+  '#7B8FA0', // Slate
+  '#8A3D4E', // Burgundy
+  '#3D6B5A', // Forest
+  '#3A4E6A', // Navy muted
+  '#9B7A5E', // Camel
 ];
 
 const FEATURE_COLOR = '#1a1a2e';

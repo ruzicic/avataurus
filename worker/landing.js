@@ -1,8 +1,8 @@
 export function landingPage(generateAvatar) {
   // Generate example avatars for gallery
   const examples = [
-    'alice', 'bob', 'charlie', 'diana', 'elena', 'frank', 'grace', 'hiro',
-    'ivan', 'julia', 'kai', 'luna', 'marco', 'nina', 'oscar', 'petra'
+    'Sofia', 'Kenji', 'Amara', 'Liam', 'Priya', 'Oscar', 'Yuki', 'Elena',
+    'Marcus', 'Zara', 'Theo', 'Nadia', 'Ravi', 'Ingrid', 'Dante', 'Mila'
   ];
   
   const exampleSvgs = examples.map((name) => ({
@@ -16,7 +16,7 @@ export function landingPage(generateAvatar) {
   }));
 
   // Generate variant comparison examples
-  const variantExamples = ['alex', 'sam', 'taylor', 'river'].map((name) => ({
+  const variantExamples = ['Sofia', 'Kenji', 'Amara', 'Liam'].map((name) => ({
     name,
     face: btoa(generateAvatar(name, { size: 64, variant: 'face' })),
     initial: btoa(generateAvatar(name, { size: 64, variant: 'initial' })),
@@ -132,10 +132,19 @@ header{
 .hero-avatars{
   display:flex;justify-content:center;gap:12px;margin-bottom:48px;
 }
-.hero-avatars img{
-  border-radius:20%;opacity:0.7;transition:all 0.3s;
+@keyframes heroWave{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.15)}
 }
-.hero-avatars img:hover{opacity:1;transform:scale(1.15) rotate(2deg)}
+.hero-avatars img{
+  border-radius:20%;opacity:0.7;
+  animation:heroWave 0.6s ease-in-out infinite;
+}
+.hero-avatars img:nth-child(1){animation-delay:0s}
+.hero-avatars img:nth-child(2){animation-delay:0.3s}
+.hero-avatars img:nth-child(3){animation-delay:0.6s}
+.hero-avatars img:nth-child(4){animation-delay:0.9s}
+.hero-avatars img:nth-child(5){animation-delay:1.2s}
 
 /* Live Demo */
 .demo-section{
@@ -194,10 +203,15 @@ header{
 
 .variant-toggle{
   display:flex;justify-content:center;margin-bottom:48px;
+  position:sticky;top:0;z-index:50;
+  background:rgba(240,241,240,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  padding:16px 0;margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px;
+  cursor:pointer;
 }
+.dark .variant-toggle{background:rgba(39,44,48,0.85)}
 .variant-toggle-pill{
   display:flex;background:var(--bg-subtle);border:1px solid var(--border);
-  border-radius:999px;padding:4px;gap:2px;
+  border-radius:999px;padding:4px;gap:2px;pointer-events:none;
 }
 .variant-toggle-btn{
   font-family:var(--font-mono);font-size:0.85rem;font-weight:500;
@@ -456,10 +470,10 @@ footer{
     <h2>Two Variants</h2>
     <p class="variants-subtitle">Choose between expressive faces or clean initials</p>
     
-    <div class="variant-toggle">
+    <div class="variant-toggle" onclick="toggleVariant()">
       <div class="variant-toggle-pill">
-        <button class="variant-toggle-btn active" onclick="updateAllAvatars('face')">face</button>
-        <button class="variant-toggle-btn" onclick="updateAllAvatars('initial')">initial</button>
+        <button class="variant-toggle-btn active">face</button>
+        <button class="variant-toggle-btn">initial</button>
       </div>
     </div>
     
@@ -755,9 +769,15 @@ updateDemo();
 
 // Global variant toggle
 let currentVariant = 'face';
-const variantNames = ['alex', 'sam', 'taylor', 'river'];
-const galleryNames = ['alice', 'bob', 'charlie', 'diana', 'elena', 'frank', 'grace', 'hiro', 'ivan', 'julia', 'kai', 'luna', 'marco', 'nina', 'oscar', 'petra'];
+const variantNames = ['Sofia', 'Kenji', 'Amara', 'Liam'];
+const galleryNames = ['Sofia', 'Kenji', 'Amara', 'Liam', 'Priya', 'Oscar', 'Yuki', 'Elena', 'Marcus', 'Zara', 'Theo', 'Nadia', 'Ravi', 'Ingrid', 'Dante', 'Mila'];
 const heroNames = ['cosmos', 'nebula', 'orbit', 'stellar', 'quantum'];
+const sizeNames = 'demo';
+const featureSeeds = ['deterministic', 'lightweight', 'scalable', 'edge', 'component', 'accessible'];
+
+function toggleVariant() {
+  updateAllAvatars(currentVariant === 'face' ? 'initial' : 'face');
+}
 
 function updateAllAvatars(variant) {
   currentVariant = variant;
@@ -807,6 +827,21 @@ function updateAllAvatars(variant) {
       return '<div class="variant-item"><img src="/' + encodeURIComponent(name) + '?size=64&variant=initial" width="64" height="64" alt="' + name + '"/><span>' + name + '</span></div>';
     }).join('');
   }
+  
+  // Update size demos
+  var sizesContainer = document.querySelector('.sizes');
+  if (sizesContainer) {
+    sizesContainer.innerHTML = [32, 48, 64, 96, 128].map(function(s) {
+      return '<div class="size-item"><img src="/demo?size=' + s + '&variant=' + variant + '" width="' + s + '" height="' + s + '" alt="' + s + 'px"/><span>' + s + 'px</span></div>';
+    }).join('');
+  }
+  
+  // Update feature card icons
+  var featureIcons = document.querySelectorAll('.feature .feature-icon');
+  featureIcons.forEach(function(icon, i) {
+    var seed = featureSeeds[i] || 'feature';
+    icon.src = '/' + encodeURIComponent(seed) + '?size=48&variant=' + variant;
+  });
 }
 
 // Override updateDemo to respect current variant
