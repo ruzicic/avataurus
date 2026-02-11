@@ -1,6 +1,6 @@
 {
   "name": "avataurus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Deterministic avatar generator — unique minimal face avatars from any string. Zero dependencies, pure SVG math.",
   "type": "module",
   "main": "src/avataurus.js",
