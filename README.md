@@ -83,7 +83,7 @@ document.getElementById('avatar').innerHTML = svg
 
 Avataurus runs your string through hash functions and extracts bits to deterministically select:
 
-- **Background color** from a curated 22-color palette
+- **Background color** from a curated 30-color palette
 - **Eye shape** from 8 types (dots, ovals, arcs, lines, diamonds, crosses, half-moons, rectangles)
 - **Eye spacing** and **vertical position** for natural variation
 - **Mouth shape** from 4 expressions (smile, line, circle, frown) or **initial letter**

@@ -133,18 +133,22 @@ header{
   display:flex;justify-content:center;gap:12px;margin-bottom:48px;
 }
 @keyframes heroWave{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.15)}
+  0%,16%,100%{transform:scale(1)}
+  8%{transform:scale(1.15)}
 }
 .hero-avatars img{
   border-radius:20%;opacity:0.7;
-  animation:heroWave 0.6s ease-in-out infinite;
+  animation:heroWave 7s ease-in-out infinite;
 }
 .hero-avatars img:nth-child(1){animation-delay:0s}
-.hero-avatars img:nth-child(2){animation-delay:0.3s}
-.hero-avatars img:nth-child(3){animation-delay:0.6s}
-.hero-avatars img:nth-child(4){animation-delay:0.9s}
-.hero-avatars img:nth-child(5){animation-delay:1.2s}
+.hero-avatars img:nth-child(2){animation-delay:1.2s}
+.hero-avatars img:nth-child(3){animation-delay:2.4s}
+.hero-avatars img:nth-child(4){animation-delay:3.6s}
+.hero-avatars img:nth-child(5){animation-delay:4.8s}
+
+@media(prefers-reduced-motion:reduce){
+  .hero-avatars img{animation:none}
+}
 
 /* Live Demo */
 .demo-section{
@@ -203,11 +207,16 @@ header{
 
 .variant-toggle{
   display:flex;justify-content:center;margin-bottom:48px;
-  position:sticky;top:0;z-index:50;
+  z-index:50;
   background:rgba(240,241,240,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
   padding:16px 0;margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px;
-  cursor:pointer;
+  cursor:pointer;transition:none;
 }
+.variant-toggle.is-fixed{
+  position:fixed;top:0;left:0;right:0;
+}
+.variant-toggle-spacer{display:none;height:56px}
+.variant-toggle.is-fixed+.variant-toggle-spacer{display:block}
 .dark .variant-toggle{background:rgba(39,44,48,0.85)}
 .variant-toggle-pill{
   display:flex;background:var(--bg-subtle);border:1px solid var(--border);
@@ -430,7 +439,7 @@ footer{
       <img src="data:image/svg+xml;base64,${btoa(generateAvatar('avataurus', { size: 32, variant: 'initial' }))}" 
            width="32" height="32" class="logo-avatar" alt="Avataurus"/>
       Avataurus
-      <span class="logo-badge">v2.0</span>
+      <span class="logo-badge">v1.0</span>
     </div>
     <nav class="nav">
       <a href="https://github.com/ruzicic/avataurus">GitHub</a>
@@ -470,12 +479,13 @@ footer{
     <h2>Two Variants</h2>
     <p class="variants-subtitle">Choose between expressive faces or clean initials</p>
     
-    <div class="variant-toggle" onclick="toggleVariant()">
+    <div class="variant-toggle" id="variantToggle" onclick="toggleVariant()">
       <div class="variant-toggle-pill">
         <button class="variant-toggle-btn active">face</button>
         <button class="variant-toggle-btn">initial</button>
       </div>
     </div>
+    <div class="variant-toggle-spacer" id="variantToggleSpacer"></div>
     
     <div class="variants-grid">
       <div class="variant-demo">
@@ -855,6 +865,22 @@ updateDemo = function() {
       '<span>' + v + '</span></div>';
   }).join('');
 };
+
+// Fixed toggle on scroll
+(function() {
+  var toggle = document.getElementById('variantToggle');
+  var spacer = document.getElementById('variantToggleSpacer');
+  var originalTop = toggle.getBoundingClientRect().top + window.scrollY;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY >= originalTop) {
+      toggle.classList.add('is-fixed');
+      spacer.style.display = 'block';
+    } else {
+      toggle.classList.remove('is-fixed');
+      spacer.style.display = 'none';
+    }
+  }, {passive: true});
+})();
 </script>
 </body>
 </html>`;
