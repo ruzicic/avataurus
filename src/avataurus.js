@@ -28,11 +28,26 @@ function bits(hash, offset, count) {
 
 // Color palette
 const COLORS = [
-  '#264653', '#2A9D8F', '#E9C46A', '#F4A261', '#E76F51',
-  '#606C38', '#283618', '#DDA15E', '#BC6C25',
-  '#003049', '#D62828', '#F77F00', '#FCBF49',
-  '#5F0F40', '#9A031E', '#FB8B24', '#E36414', '#0F4C5C',
-  '#335C67', '#E09F3E', '#9E2A2B', '#540B0E'
+  '#CC5E3D', // Flame Pea - warm terracotta
+  '#F4CB43', // Bright Sun - golden yellow
+  '#89BFD2', // Half Baked - soft blue
+  '#56A6C3', // Fountain Blue - medium blue
+  '#B54A32', // Muted rust
+  '#D4836A', // Dusty terracotta
+  '#A3725A', // Clay brown
+  '#8B5E3C', // Warm umber
+  '#6B98A8', // Dusty teal
+  '#4E8A9E', // Deep teal
+  '#3D7A8F', // Slate blue
+  '#9AABB4', // Pewter blue
+  '#8C8578', // Warm taupe
+  '#A69E91', // Sand
+  '#7A8B6E', // Sage olive
+  '#C4956A', // Warm tan
+  '#C48B7A', // Dusty rose
+  '#D4A87C', // Warm sand
+  '#E8C49A', // Muted gold
+  '#6B7B6E', // Muted sage
 ];
 
 const FEATURE_COLOR = '#1a1a2e';
