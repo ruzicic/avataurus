@@ -423,6 +423,29 @@ footer{
 .footer-links a{color:var(--muted);font-size:0.85rem;font-family:var(--font-mono)}
 .footer-links a:hover{color:var(--fg)}
 
+.wordpress-section{padding:80px 0}
+.wp-banner{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:48px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:center}
+.wp-icon{width:48px;height:48px;color:var(--accent);margin-bottom:16px}
+.wp-text h2{font-family:var(--font-display);font-size:1.8rem;font-weight:700;margin:0 0 12px}
+.wp-text>p{color:var(--muted);line-height:1.7;margin:0 0 20px}
+.wp-features{list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px}
+.wp-features li{color:var(--fg);font-size:0.95rem;padding-left:24px;position:relative}
+.wp-features li::before{content:'';position:absolute;left:0;top:7px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.wp-actions{display:flex;gap:12px;flex-wrap:wrap}
+.wp-btn{display:inline-flex;align-items:center;padding:10px 24px;border-radius:8px;font-family:var(--font-mono);font-size:0.85rem;font-weight:500;text-decoration:none;transition:all 0.2s}
+.wp-btn-primary{background:var(--fg);color:var(--bg)}
+.wp-btn-primary:hover{opacity:0.85}
+.wp-btn-secondary{border:1px solid var(--border);color:var(--fg)}
+.wp-btn-secondary:hover{border-color:var(--fg)}
+.wp-preview{display:flex;flex-direction:column;gap:0}
+.wp-comment-list{background:var(--bg);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.wp-comment{display:flex;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border);align-items:flex-start}
+.wp-comment:last-child{border-bottom:none}
+.wp-comment-avatar{border-radius:4px;flex-shrink:0}
+.wp-comment-body{min-width:0}
+.wp-comment-body strong{font-size:0.9rem;display:block;margin-bottom:2px}
+.wp-comment-body p{margin:0;font-size:0.85rem;color:var(--muted);line-height:1.5}
+
 .footer-giant{
   font-family:var(--font-mono);
   font-weight:700;
@@ -451,6 +474,8 @@ footer{
   .gallery{grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:16px}
   .sizes{gap:16px}
   .code-block{padding:20px 16px}
+  .wp-banner{grid-template-columns:1fr;padding:32px 20px}
+  .wp-preview{margin-top:8px}
 }
 </style>
 </head>
@@ -645,6 +670,60 @@ footer{
              class="feature-icon" alt=""/>
         <h3>Accessible</h3>
         <p>Semantic HTML, proper alt text, keyboard navigation, and screen reader support built in.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wordpress-section">
+    <div class="wp-banner">
+      <div class="wp-banner-content">
+        <div class="wp-icon">
+          <svg viewBox="0 0 122.5 122.5" width="48" height="48">
+            <g fill="currentColor">
+              <path d="M8.7 61.3c0 20.9 12.2 39 29.8 47.5L12.5 35.8C10.1 43.5 8.7 52.2 8.7 61.3z"/>
+              <path d="M96 58.6c0-6.5-2.3-11-4.3-14.5-2.7-4.3-5.2-8-5.2-12.3 0-4.8 3.7-9.3 8.8-9.3h.7C86.1 13.5 74.2 8.7 61.3 8.7c-17.3 0-32.5 8.9-41.4 22.3h3.6c5.8 0 14.8-.7 14.8-.7 3-.2 3.3 4.2.3 4.5 0 0-3 .4-6.3.5l20.1 59.7 12.1-36.2-8.6-23.5c-3-.2-5.8-.5-5.8-.5-3-.2-2.6-4.7.3-4.5 0 0 9.2.7 14.6.7 5.8 0 14.8-.7 14.8-.7 3-.2 3.3 4.2.3 4.5 0 0-3 .4-6.3.5l19.9 59.3 5.5-18.4C95 71 96 64.6 96 58.6z"/>
+              <path d="M62.2 65.9l-16.5 48c4.9 1.5 10.1 2.3 15.6 2.3 6.4 0 12.6-1.1 18.3-3.2-.1-.2-.3-.5-.4-.7L62.2 65.9z"/>
+              <path d="M107.4 32.4c.5 3.4.7 7.1.7 11.1 0 10.9-2 23.2-8.2 38.6l-22 63.6c21.4-12.5 35.9-35.8 35.9-62.4C113.8 70.5 111.5 50.9 107.4 32.4z"/>
+              <path d="M61.3 0C27.4 0 0 27.4 0 61.3c0 33.8 27.4 61.3 61.3 61.3 33.8 0 61.3-27.4 61.3-61.3C122.5 27.4 95.1 0 61.3 0zM61.3 119.7c-32.2 0-58.5-26.2-58.5-58.5S29 2.8 61.3 2.8s58.5 26.2 58.5 58.5S93.5 119.7 61.3 119.7z"/>
+            </g>
+          </svg>
+        </div>
+        <div class="wp-text">
+          <h2>WordPress Plugin</h2>
+          <p>Drop Avataurus into any WordPress site. Replace the default Gravatar mystery person with unique, colorful faces for every commenter and user.</p>
+          <ul class="wp-features">
+            <li>Activate and go. Zero configuration needed.</li>
+            <li>Two variants: expressive faces or clean initials</li>
+            <li>Respects existing Gravatar profile pictures</li>
+            <li>Privacy-friendly. No tracking, no external accounts.</li>
+          </ul>
+          <div class="wp-actions">
+            <a href="https://github.com/ruzicic/avataurus-wp" class="wp-btn wp-btn-primary">Get the Plugin</a>
+            <a href="https://github.com/ruzicic/avataurus-wp#filters" class="wp-btn wp-btn-secondary">Developer Docs</a>
+          </div>
+        </div>
+      </div>
+      <div class="wp-preview">
+        <div class="wp-comment-list">
+          ${[
+            { name: 'Elena Vasquez', text: 'This is exactly what I needed for my blog!' },
+            { name: 'Kenji Tanaka', text: 'Love the deterministic approach. Same face every time.' },
+            { name: 'Amara Osei', text: 'So much better than the default mystery person icon.' },
+          ]
+            .map(
+              (c) => `
+            <div class="wp-comment">
+              <img src="data:image/svg+xml;base64,${btoa(generateAvatar(c.name, { size: 40 }))}" 
+                   width="40" height="40" alt="${c.name}" class="wp-comment-avatar"/>
+              <div class="wp-comment-body">
+                <strong>${c.name}</strong>
+                <p>${c.text}</p>
+              </div>
+            </div>
+          `,
+            )
+            .join('')}
+        </div>
       </div>
     </div>
   </section>
