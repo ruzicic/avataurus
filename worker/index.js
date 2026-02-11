@@ -33,12 +33,16 @@ export default {
     const size = parseInt(url.searchParams.get('size') || '128', 10);
     const variant = url.searchParams.get('variant') || 'gradient';
     const showInitial = url.searchParams.get('initial') === 'true';
+    const mood = url.searchParams.get('mood') || null;
+    const species = url.searchParams.get('species') || null;
     const clampedSize = Math.min(Math.max(size, 16), 512);
 
     const svg = generateAvatar(name, {
       size: clampedSize,
       variant,
       showInitial,
+      mood,
+      species,
     });
 
     return new Response(svg, {

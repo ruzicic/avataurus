@@ -1,35 +1,26 @@
+<div align="center">
+
 # 🦕 Avataurus
 
-[![npm version](https://img.shields.io/npm/v/avataurus)](https://www.npmjs.com/package/avataurus)
-[![license](https://img.shields.io/npm/l/avataurus)](LICENSE)
-[![zero dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)]()
+**Deterministic SVG avatar generator — unique dinosaur-inspired faces from any string.**
 
-**Deterministic avatar generator** — unique, dinosaur-inspired faces from any string. Same input = same face. **1.7 billion+** unique combinations across 13 feature layers.
+[![npm version](https://img.shields.io/npm/v/avataurus.svg)](https://www.npmjs.com/package/avataurus)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/avataurus)](https://bundlephobia.com/package/avataurus)
+[![license](https://img.shields.io/npm/l/avataurus.svg)](./LICENSE)
+[![CI](https://github.com/ruzicic/avataurus/actions/workflows/ci.yml/badge.svg)](https://github.com/ruzicic/avataurus/actions/workflows/ci.yml)
 
-🔗 **[Live Demo →](https://avataurus.workers.dev)**
+**1.7B+ unique combinations · Zero dependencies · 4KB gzipped**
 
-![Gallery](https://avataurus.workers.dev/alice?size=80) ![Gallery](https://avataurus.workers.dev/bob?size=80) ![Gallery](https://avataurus.workers.dev/charlie?size=80) ![Gallery](https://avataurus.workers.dev/diana?size=80) ![Gallery](https://avataurus.workers.dev/elena?size=80) ![Gallery](https://avataurus.workers.dev/frank?size=80)
+[**Try it live →**](https://avataurus.com)
 
-## Features
+</div>
 
-- 🎯 **Deterministic** — same input always gives the same avatar
-- 🦕 **13 feature layers** — head, spikes, eyes, eyebrows, mouth, nose, cheeks, ears, face markings, accessories, belly patch, tail, background
-- 📦 **Zero dependencies** — pure vanilla JavaScript
-- ⚡ **Blazing fast** — SVG generated in <2ms
-- 🔌 **Web Component** — `<avataurus>` custom element with hover animations
-- ☁️ **Cloudflare Worker** — image URL API on the edge
-- 🎨 **16 color palettes** with gradient and solid variants
+---
 
 ## Install
 
 ```bash
-npm install avataurus
-```
-
-Or use the CDN:
-
-```html
-<script type="module" src="https://unpkg.com/avataurus/src/element.js"></script>
+npm i avataurus
 ```
 
 ## Usage
@@ -37,67 +28,67 @@ Or use the CDN:
 ### Image URL (Cloudflare Worker)
 
 ```html
-<img src="https://avataurus.workers.dev/john" width="48" height="48" />
-<img src="https://avataurus.workers.dev/john?size=128&variant=solid&initial=true" />
+<img src="https://avataurus.com/avatar/your-username" width="64" height="64" />
 ```
+
+Supports query params: `?size=128&variant=gradient&showInitial=true`
 
 ### Web Component
 
 ```html
-<script type="module" src="https://unpkg.com/avataurus/src/element.js"></script>
+<script type="module">
+  import 'avataurus/element'
+</script>
 
-<avataurus name="john" size="48"></avataurus>
-<avataurus name="jane" size="64" variant="solid"></avataurus>
-<avataurus name="bob" size="48" show-initial></avataurus>
-<avataurus name="static" size="48" no-hover></avataurus>
+<avatar-us name="jane" size="64"></avatar-us>
+<avatar-us name="john" size="64" variant="solid" show-initial></avatar-us>
 ```
 
 ### JavaScript API
 
 ```js
-import { generateAvatar } from 'avataurus';
+import { generateAvatar } from 'avataurus'
 
-const svg = generateAvatar('john', {
-  size: 128,
-  variant: 'gradient',
-  showInitial: true,
-});
-
-document.getElementById('avatar').innerHTML = svg;
+const svg = generateAvatar('jane', { size: 128 })
+document.getElementById('avatar').innerHTML = svg
 ```
 
 ## Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `size` | number | 128 | Avatar size in pixels |
-| `variant` | `'gradient'` \| `'solid'` | `'gradient'` | Color fill style |
-| `showInitial` | boolean | false | Show first letter overlay |
-| `colors` | string[4] | auto | Custom color palette `[main, secondary, light, bg]` |
+| `size` | `number` | `128` | Avatar size in pixels |
+| `variant` | `'gradient' \| 'solid'` | `'gradient'` | Fill style for the head |
+| `showInitial` | `boolean` | `false` | Overlay first letter of the name |
+| `colors` | `[string, string, string, string]` | auto | Custom color palette `[main, secondary, light, bg]` |
 
-## Web Component Attributes
+### Web Component Attributes
 
 | Attribute | Description |
 |-----------|-------------|
 | `name` | String to generate avatar from |
-| `size` | Pixel size (default: 48) |
+| `size` | Pixel size (default: `48`) |
 | `variant` | `gradient` or `solid` |
 | `show-initial` | Show first letter overlay |
 | `colors` | JSON array of 4 hex colors |
 | `no-hover` | Disable hover animation |
 
-## Self-Hosting
+## How It Works
 
-Avataurus runs as a Cloudflare Worker:
+Avataurus hashes the input string using FNV-1a, DJB2, and SDBM to extract bits that deterministically select from 13 independent feature layers: head shape, spikes, eyes, eyebrows, mouth, nose, cheeks, ears, face markings, accessories, belly patch, tail, and background pattern.
 
-```bash
-git clone https://github.com/ruzicic/avataurus
-cd avataurus
-npm install
-npm run dev      # local dev server
-npm run deploy   # deploy to Cloudflare
-```
+Same input → same avatar. Always.
+
+## Compatibility
+
+- **Browser:** Any modern browser (ES2020+)
+- **Node.js:** 18+
+- **Edge:** Cloudflare Workers, Deno, Bun
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development setup and guidelines.
 
 ## License
 
-[MIT](LICENSE) © mladen
+[MIT](./LICENSE) © mladen

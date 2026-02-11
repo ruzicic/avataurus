@@ -13,9 +13,9 @@
 
 import { generateAvatar } from './avataurus.js';
 
-class Avataurus extends HTMLElement {
+class AvatarUs extends HTMLElement {
   static get observedAttributes() {
-    return ['name', 'size', 'colors', 'variant', 'show-initial', 'no-hover'];
+    return ['name', 'size', 'colors', 'variant', 'show-initial', 'no-hover', 'mood', 'species'];
   }
 
   constructor() {
@@ -43,7 +43,10 @@ class Avataurus extends HTMLElement {
       try { colors = JSON.parse(colorsAttr); } catch(e) { /* ignore */ }
     }
 
-    const svg = generateAvatar(name, { size, colors, showInitial, variant });
+    const mood = this.getAttribute('mood') || null;
+    const species = this.getAttribute('species') || null;
+
+    const svg = generateAvatar(name, { size, colors, showInitial, variant, mood, species });
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -71,9 +74,9 @@ class Avataurus extends HTMLElement {
   }
 }
 
-if (typeof customElements !== 'undefined' && !customElements.get('avataurus')) {
-  customElements.define('avataurus', Avataurus);
+if (typeof customElements !== 'undefined' && !customElements.get('avatar-us')) {
+  customElements.define('avatar-us', AvatarUs);
 }
 
-export { Avataurus };
-export default Avataurus;
+export { AvatarUs };
+export default AvatarUs;

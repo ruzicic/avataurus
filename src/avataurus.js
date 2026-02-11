@@ -286,8 +286,26 @@ function bgPattern(idx, size, color) {
 }
 
 // --- Main Generator ---
+// --- Mood presets (override eye + mouth combos) ---
+const MOODS = {
+  happy:     { eyeIdx: 3, mouthIdx: 0 },  // closed happy eyes + smile
+  angry:     { eyeIdx: 0, mouthIdx: 4, browIdx: 2 },  // round eyes + flat line + angry brows
+  sleepy:    { eyeIdx: 5, mouthIdx: 3 },  // sleepy eyes + small o
+  surprised: { eyeIdx: 4, mouthIdx: 3 },  // big round eyes + small o
+  chill:     { eyeIdx: 6, mouthIdx: 7 },  // winking + smirk
+};
+
+// --- Species presets (override spike + ear + tail combos) ---
+const SPECIES = {
+  rex:          { spikeIdx: 0, earIdx: 3, tailIdx: 1 },  // three spikes + dino fins + spiky tail
+  triceratops:  { spikeIdx: 1, earIdx: 2, tailIdx: 2 },  // two horns + dino fins + long tail
+  stego:        { spikeIdx: 4, earIdx: 0, tailIdx: 1 },  // crown spikes + small round + spiky tail
+  raptor:       { spikeIdx: 2, earIdx: 1, tailIdx: 0 },  // single horn + pointy ears + curly tail
+  bronto:       { spikeIdx: 5, earIdx: 4, tailIdx: 2 },  // no spikes + large ears + long tail
+};
+
 function generateAvatar(name, options = {}) {
-  const { size = 128, colors = null, showInitial = false, variant = 'gradient' } = options;
+  const { size = 128, colors = null, showInitial = false, variant = 'gradient', mood = null, species = null } = options;
 
   const h1 = fnv1a(name || 'anonymous');
   const h2 = hash2(name || 'anonymous');
@@ -302,23 +320,39 @@ function generateAvatar(name, options = {}) {
   // Feature indices from hash bits (carefully distributed)
   // h1: head(3), eyes(3), mouth(3), nose(3), spikes(3) = 15 bits
   const headIdx    = bits(h1, 0, 3);
-  const eyeIdx     = bits(h1, 3, 3);
-  const mouthIdx   = bits(h1, 6, 3);
+  let eyeIdx       = bits(h1, 3, 3);
+  let mouthIdx     = bits(h1, 6, 3);
   const noseIdx    = bits(h1, 9, 3);
-  const spikeIdx   = bits(h1, 12, 3);
+  let spikeIdx     = bits(h1, 12, 3);
 
   // h2: cheeks(2), bg(2), eyebrows(3), ears(3), markings(3) = 13 bits
   const cheekIdx   = bits(h2, 0, 2);
   const bgIdx      = bits(h2, 2, 2);
-  const browIdx    = bits(h2, 4, 3);
-  const earIdx     = bits(h2, 7, 3);
+  let browIdx      = bits(h2, 4, 3);
+  let earIdx       = bits(h2, 7, 3);
   const markIdx    = bits(h2, 10, 3);
 
   // h3: accessory(3), belly(2), tail(2), gradient angle(3) = 10 bits
-  const accIdx     = bits(h3, 0, 3);
-  const bellyIdx   = bits(h3, 3, 2);
-  const tailIdx    = bits(h3, 5, 2);
-  const angleIdx   = bits(h3, 7, 3);
+  let accIdx     = bits(h3, 0, 3);
+  let bellyIdx   = bits(h3, 3, 2);
+  let tailIdx    = bits(h3, 5, 2);
+  const angleIdx = bits(h3, 7, 3);
+
+  // Apply mood override (eyes + mouth + optionally brows)
+  if (mood && MOODS[mood]) {
+    const m = MOODS[mood];
+    if (m.eyeIdx != null) eyeIdx = m.eyeIdx;
+    if (m.mouthIdx != null) mouthIdx = m.mouthIdx;
+    if (m.browIdx != null) browIdx = m.browIdx;
+  }
+
+  // Apply species override (spikes + ears + tail)
+  if (species && SPECIES[species]) {
+    const s = SPECIES[species];
+    if (s.spikeIdx != null) spikeIdx = s.spikeIdx;
+    if (s.earIdx != null) earIdx = s.earIdx;
+    if (s.tailIdx != null) tailIdx = s.tailIdx;
+  }
 
   // Build SVG defs
   const gradientId = `grad_${h1}`;
