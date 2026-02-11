@@ -49,6 +49,14 @@ export function landingPage(generateAvatar) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Avataurus — Deterministic Minimal Face Avatars</title>
 <meta name="description" content="Generate unique minimal face avatars from any string. Same input, same face — forever. Zero dependencies, pure SVG math."/>
+<meta property="og:title" content="Avataurus"/>
+<meta property="og:description" content="Deterministic SVG avatars from pure math. Same input, same face — forever. Zero dependencies, sub-millisecond, edge-native."/>
+<meta property="og:url" content="https://avataurus.com"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://avataurus.com/og-image.svg"/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Avataurus"/>
+<meta name="twitter:description" content="Deterministic SVG avatars from pure math. Zero dependencies, sub-millisecond."/>
 <link rel="icon" href="data:image/svg+xml;base64,${btoa(generateAvatar('avataurus', { size: 32, variant: 'initial' }))}"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>

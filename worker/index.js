@@ -42,6 +42,33 @@ export default {
       });
     }
 
+    // OG image
+    if (path === '/og-image.svg') {
+      const names = ['Sofia', 'Kenji', 'Amara', 'Liam', 'Priya', 'Oscar', 'Yuki', 'Elena'];
+      const s = 80;
+      const gap = 16;
+      const totalW = names.length * s + (names.length - 1) * gap;
+      const padding = 40;
+      const w = totalW + padding * 2;
+      const h = s + padding * 2;
+      let inner = `<rect width="${w}" height="${h}" fill="#F0F1F0"/>`;
+      names.forEach((name, i) => {
+        const svg = generateAvatar(name, { size: s });
+        const content = svg.replace(/<svg[^>]*>/, '').replace(/<\/svg>/, '');
+        inner += `<g transform="translate(${padding + i * (s + gap)}, ${padding})">${content}</g>`;
+      });
+      return new Response(
+        `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">${inner}</svg>`,
+        {
+          headers: {
+            'Content-Type': 'image/svg+xml',
+            'Cache-Control': 'public, max-age=86400',
+            ...SECURITY_HEADERS,
+          },
+        },
+      );
+    }
+
     // Favicon
     if (path === '/favicon.ico') {
       const svg = generateAvatar('avataurus', { size: 32, variant: 'initial' });
