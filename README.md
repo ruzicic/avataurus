@@ -5,8 +5,8 @@
 **Minimal face avatars from pure math**
 
 [![npm version](https://img.shields.io/npm/v/avataurus.svg)](https://www.npmjs.com/package/avataurus)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/avataurus)](https://bundlephobia.com/package/avataurus)
-[![license](https://img.shields.io/npm/l/avataurus.svg)](./LICENSE)
+[![bundle size](https://img.shields.io/badge/bundle-4KB_gzip-blue)](https://www.npmjs.com/package/avataurus)
+[![license](https://img.shields.io/npm/l/avataurus.svg)](https://github.com/ruzicic/avataurus/blob/master/LICENSE)
 [![CI](https://github.com/ruzicic/avataurus/actions/workflows/ci.yml/badge.svg)](https://github.com/ruzicic/avataurus/actions/workflows/ci.yml)
 
 **Deterministic · Zero Dependencies · 4KB gzipped**
@@ -15,7 +15,7 @@
 
 <br />
 
-<img src=".github/assets/avatars-preview.png" alt="Example avatars" width="724" />
+<img src="https://raw.githubusercontent.com/ruzicic/avataurus/master/.github/assets/avatars-preview.png" alt="Example avatars" width="724" />
 
 </div>
 
