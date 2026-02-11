@@ -104,10 +104,10 @@ describe('generateAvatar', () => {
 
   it('produces different eyes for different inputs', () => {
     // Generate multiple avatars and ensure they're different
-    const avatars = ['alice', 'bob', 'charlie', 'diana', 'elena'].map(name => 
-      generateAvatar(name, { variant: 'face' })
+    const avatars = ['alice', 'bob', 'charlie', 'diana', 'elena'].map((name) =>
+      generateAvatar(name, { variant: 'face' }),
     );
-    
+
     // All should be different
     for (let i = 0; i < avatars.length; i++) {
       for (let j = i + 1; j < avatars.length; j++) {
@@ -119,7 +119,7 @@ describe('generateAvatar', () => {
   it('initial variant shows first character in uppercase', () => {
     const svg = generateAvatar('hello', { variant: 'initial' });
     expect(svg).toContain('>H</text>');
-    
+
     const svg2 = generateAvatar('world', { variant: 'initial' });
     expect(svg2).toContain('>W</text>');
   });

@@ -1,10 +1,24 @@
 export function landingPage(generateAvatar) {
   // Generate example avatars for gallery
   const examples = [
-    'Sofia', 'Kenji', 'Amara', 'Liam', 'Priya', 'Oscar', 'Yuki', 'Elena',
-    'Marcus', 'Zara', 'Theo', 'Nadia', 'Ravi', 'Ingrid', 'Dante', 'Mila'
+    'Sofia',
+    'Kenji',
+    'Amara',
+    'Liam',
+    'Priya',
+    'Oscar',
+    'Yuki',
+    'Elena',
+    'Marcus',
+    'Zara',
+    'Theo',
+    'Nadia',
+    'Ravi',
+    'Ingrid',
+    'Dante',
+    'Mila',
   ];
-  
+
   const exampleSvgs = examples.map((name) => ({
     name,
     svg64: btoa(generateAvatar(name, { size: 80, variant: 'face' })),
@@ -454,7 +468,7 @@ footer{
 
   <section class="hero">
     <div class="hero-avatars">
-      ${heroAvatars.map(a => `<img src="data:image/svg+xml;base64,${a.svg64}" width="48" height="48" alt="" />`).join('')}
+      ${heroAvatars.map((a) => `<img src="data:image/svg+xml;base64,${a.svg64}" width="48" height="48" alt="" />`).join('')}
     </div>
     <div class="hero-statement">
       <span class="line-muted">Every string</span><br/>
@@ -492,12 +506,16 @@ footer{
         <h3>Face</h3>
         <p>Eyes + mouth expressions on colored backgrounds</p>
         <div class="variant-examples" id="variantFaceExamples">
-          ${variantExamples.map(e => `
+          ${variantExamples
+            .map(
+              (e) => `
             <div class="variant-item">
               <img src="data:image/svg+xml;base64,${e.face}" width="64" height="64" alt="${e.name}"/>
               <span>${e.name}</span>
             </div>
-          `).join('')}
+          `,
+            )
+            .join('')}
         </div>
       </div>
       
@@ -505,12 +523,16 @@ footer{
         <h3>Initial</h3>
         <p>Eyes + first letter in monospace font</p>
         <div class="variant-examples" id="variantInitialExamples">
-          ${variantExamples.map(e => `
+          ${variantExamples
+            .map(
+              (e) => `
             <div class="variant-item">
               <img src="data:image/svg+xml;base64,${e.initial}" width="64" height="64" alt="${e.name}"/>
               <span>${e.name}</span>
             </div>
-          `).join('')}
+          `,
+            )
+            .join('')}
         </div>
       </div>
     </div>
@@ -538,12 +560,16 @@ footer{
     <p class="gallery-subtitle">Same algorithm, endless variety</p>
     
     <div class="gallery">
-      ${exampleSvgs.map(e => `
+      ${exampleSvgs
+        .map(
+          (e) => `
         <div class="gallery-item">
           <img src="data:image/svg+xml;base64,${e.svg64}" width="80" height="80" alt="${e.name}"/>
           <span>${e.name}</span>
         </div>
-      `).join('')}
+      `,
+        )
+        .join('')}
     </div>
   </section>
 
@@ -552,12 +578,16 @@ footer{
     <p class="sizes-subtitle">Sharp at every size — it's vectors all the way down</p>
     
     <div class="sizes">
-      ${sizeDemos.map(s => `
+      ${sizeDemos
+        .map(
+          (s) => `
         <div class="size-item">
           <img src="data:image/svg+xml;base64,${s.svg64}" width="${s.size}" height="${s.size}" alt="${s.size}px"/>
           <span>${s.size}px</span>
         </div>
-      `).join('')}
+      `,
+        )
+        .join('')}
     </div>
   </section>
 

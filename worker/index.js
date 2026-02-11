@@ -20,9 +20,9 @@ export default {
     if (path === '/favicon.ico') {
       const svg = generateAvatar('avataurus', { size: 32, variant: 'initial' });
       return new Response(svg, {
-        headers: { 
-          'Content-Type': 'image/svg+xml', 
-          'Cache-Control': 'public, max-age=31536000, immutable' 
+        headers: {
+          'Content-Type': 'image/svg+xml',
+          'Cache-Control': 'public, max-age=31536000, immutable',
         },
       });
     }

@@ -35,12 +35,15 @@ class AvataurusEl extends HTMLElement {
     const size = parseInt(this.getAttribute('size') || '48', 10);
     const variant = this.getAttribute('variant') || 'face';
     const noHover = this.hasAttribute('no-hover');
-    
+
     // Parse colors from comma-separated string
     const colorsAttr = this.getAttribute('colors');
     let colors = null;
     if (colorsAttr) {
-      colors = colorsAttr.split(',').map(c => c.trim()).filter(Boolean);
+      colors = colorsAttr
+        .split(',')
+        .map((c) => c.trim())
+        .filter(Boolean);
     }
 
     const svg = generateAvatar(seed, { size, variant, colors });
