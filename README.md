@@ -16,7 +16,7 @@
 - 🦕 **13 feature layers** — head, spikes, eyes, eyebrows, mouth, nose, cheeks, ears, face markings, accessories, belly patch, tail, background
 - 📦 **Zero dependencies** — pure vanilla JavaScript
 - ⚡ **Blazing fast** — SVG generated in <2ms
-- 🔌 **Web Component** — `<avatar-us>` custom element with hover animations
+- 🔌 **Web Component** — `<avataurus>` custom element with hover animations
 - ☁️ **Cloudflare Worker** — image URL API on the edge
 - 🎨 **16 color palettes** with gradient and solid variants
 
@@ -46,10 +46,10 @@ Or use the CDN:
 ```html
 <script type="module" src="https://unpkg.com/avataurus/src/element.js"></script>
 
-<avatar-us name="john" size="48"></avatar-us>
-<avatar-us name="jane" size="64" variant="solid"></avatar-us>
-<avatar-us name="bob" size="48" show-initial></avatar-us>
-<avatar-us name="static" size="48" no-hover></avatar-us>
+<avataurus name="john" size="48"></avataurus>
+<avataurus name="jane" size="64" variant="solid"></avataurus>
+<avataurus name="bob" size="48" show-initial></avataurus>
+<avataurus name="static" size="48" no-hover></avataurus>
 ```
 
 ### JavaScript API

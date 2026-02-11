@@ -1,6 +1,6 @@
 /**
  * Avataurus Web Component
- * <avatar-us name="john" size="48" variant="gradient" show-initial></avatar-us>
+ * <avataurus name="john" size="48" variant="gradient" show-initial></avataurus>
  *
  * Attributes:
  *   name       - String to generate avatar from
@@ -13,7 +13,7 @@
 
 import { generateAvatar } from './avataurus.js';
 
-class AvatarUs extends HTMLElement {
+class Avataurus extends HTMLElement {
   static get observedAttributes() {
     return ['name', 'size', 'colors', 'variant', 'show-initial', 'no-hover'];
   }
@@ -71,9 +71,9 @@ class AvatarUs extends HTMLElement {
   }
 }
 
-if (typeof customElements !== 'undefined' && !customElements.get('avatar-us')) {
-  customElements.define('avatar-us', AvatarUs);
+if (typeof customElements !== 'undefined' && !customElements.get('avataurus')) {
+  customElements.define('avataurus', Avataurus);
 }
 
-export { AvatarUs };
-export default AvatarUs;
+export { Avataurus };
+export default Avataurus;

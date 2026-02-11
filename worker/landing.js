@@ -171,7 +171,7 @@ footer{padding:40px 0;text-align:center;color:var(--muted);font-size:0.85rem;bor
       <div class="feature"><div class="icon">🎯</div><h3>Deterministic</h3><p>Same input always produces the same avatar. No randomness, no databases, no state.</p></div>
       <div class="feature"><div class="icon">🦕</div><h3>1.7B+ Combinations</h3><p>13 feature layers including eyebrows, ears, markings, accessories, tails. Every avatar feels unique.</p></div>
       <div class="feature"><div class="icon">📦</div><h3>Zero Dependencies</h3><p>Vanilla JavaScript. No React, no frameworks. Works everywhere — browser, Node.js, Workers.</p></div>
-      <div class="feature"><div class="icon">🔌</div><h3>Web Component</h3><p>Drop-in &lt;avatar-us&gt; element with hover animations and Shadow DOM isolation. Works in any framework.</p></div>
+      <div class="feature"><div class="icon">🔌</div><h3>Web Component</h3><p>Drop-in &lt;avataurus&gt; element with hover animations and Shadow DOM isolation. Works in any framework.</p></div>
       <div class="feature"><div class="icon">♾️</div><h3>Cache Forever</h3><p>Immutable by design. Cache responses forever — the same URL always returns the same image.</p></div>
     </div>
   </section>
@@ -206,12 +206,12 @@ const codes=[
 <script type="module" src="https://unpkg.com/avataurus/src/element.js"><\\/script>
 
 <!-- Use it! -->
-<avatar-us name="john" size="48"></avatar-us>
-<avatar-us name="jane" size="64" variant="solid"></avatar-us>
-<avatar-us name="bob" size="48" show-initial></avatar-us>
+<avataurus name="john" size="48"></avataurus>
+<avataurus name="jane" size="64" variant="solid"></avataurus>
+<avataurus name="bob" size="48" show-initial></avataurus>
 
 <!-- Disable hover animation -->
-<avatar-us name="static" size="48" no-hover></avatar-us>\`,
+<avataurus name="static" size="48" no-hover></avataurus>\`,
   \`import { generateAvatar } from 'avataurus';
 
 // Generate SVG string
