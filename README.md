@@ -13,6 +13,10 @@
 
 [**Try it live →**](https://avataurus.com)
 
+<br />
+
+<img src=".github/assets/avatars-preview.png" alt="Example avatars" width="724" />
+
 </div>
 
 ---
