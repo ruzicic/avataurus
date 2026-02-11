@@ -13,7 +13,7 @@
 
 import { generateAvatar } from './avataurus.js';
 
-class AvatarUs extends HTMLElement {
+class AvataurusEl extends HTMLElement {
   static get observedAttributes() {
     return ['name', 'size', 'colors', 'variant', 'show-initial', 'no-hover', 'mood', 'species'];
   }
@@ -82,9 +82,9 @@ class AvatarUs extends HTMLElement {
   }
 }
 
-if (typeof customElements !== 'undefined' && !customElements.get('avatar-us')) {
-  customElements.define('avatar-us', AvatarUs);
+if (typeof customElements !== 'undefined' && !customElements.get('avataurus-el')) {
+  customElements.define('avataurus-el', AvataurusEl);
 }
 
-export { AvatarUs };
-export default AvatarUs;
+export { AvataurusEl };
+export default AvataurusEl;

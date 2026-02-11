@@ -40,8 +40,8 @@ Supports query params: `?size=128&variant=gradient&showInitial=true`
   import 'avataurus/element'
 </script>
 
-<avatar-us name="jane" size="64"></avatar-us>
-<avatar-us name="john" size="64" variant="solid" show-initial></avatar-us>
+<avataurus-el name="jane" size="64"></avataurus-el>
+<avataurus-el name="john" size="64" variant="solid" show-initial></avataurus-el>
 ```
 
 ### JavaScript API
