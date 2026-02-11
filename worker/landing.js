@@ -1,17 +1,33 @@
 export function landingPage(generateAvatar) {
   // Pre-generate gallery avatars — show variety
   const examples = [
-    'alice', 'bob', 'charlie', 'diana', 'elena', 'frank',
-    'grace', 'hiro', 'ivan', 'julia', 'kai', 'luna',
-    'marco', 'nina', 'oscar', 'petra', 'quinn', 'rosa',
-    'sam', 'tara',
+    'alice',
+    'bob',
+    'charlie',
+    'diana',
+    'elena',
+    'frank',
+    'grace',
+    'hiro',
+    'ivan',
+    'julia',
+    'kai',
+    'luna',
+    'marco',
+    'nina',
+    'oscar',
+    'petra',
+    'quinn',
+    'rosa',
+    'sam',
+    'tara',
   ];
-  const exampleSvgs = examples.map(name => ({
+  const exampleSvgs = examples.map((name) => ({
     name,
     svg64: btoa(generateAvatar(name, { size: 80, variant: 'gradient' })),
   }));
 
-  const sizeDemos = [32, 48, 64, 96, 128].map(s => ({
+  const sizeDemos = [32, 48, 64, 96, 128].map((s) => ({
     size: s,
     svg64: btoa(generateAvatar('demo', { size: s })),
   }));
@@ -137,7 +153,7 @@ footer{padding:40px 0;text-align:center;color:var(--muted);font-size:0.85rem;bor
     <h2>Gallery</h2>
     <p class="sub">Every string produces a unique face — 20 examples</p>
     <div class="gallery">
-      ${exampleSvgs.map(e => `<div class="gallery-item"><img src="data:image/svg+xml;base64,${e.svg64}" width="80" height="80" alt="${e.name}"/><span>${e.name}</span></div>`).join('')}
+      ${exampleSvgs.map((e) => `<div class="gallery-item"><img src="data:image/svg+xml;base64,${e.svg64}" width="80" height="80" alt="${e.name}"/><span>${e.name}</span></div>`).join('')}
     </div>
   </section>
 
@@ -145,7 +161,7 @@ footer{padding:40px 0;text-align:center;color:var(--muted);font-size:0.85rem;bor
     <h2>Sizes</h2>
     <p class="sub">Pixel-perfect at any size</p>
     <div class="sizes">
-      ${sizeDemos.map(s => `<div class="size-item"><img src="data:image/svg+xml;base64,${s.svg64}" width="${s.size}" height="${s.size}" alt="${s.size}px"/><span>${s.size}px</span></div>`).join('')}
+      ${sizeDemos.map((s) => `<div class="size-item"><img src="data:image/svg+xml;base64,${s.svg64}" width="${s.size}" height="${s.size}" alt="${s.size}px"/><span>${s.size}px</span></div>`).join('')}
     </div>
   </section>
 

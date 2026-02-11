@@ -50,7 +50,7 @@ export default {
         'Content-Type': 'image/svg+xml',
         'Cache-Control': 'public, max-age=31536000, immutable',
         'Access-Control-Allow-Origin': '*',
-        'Vary': 'Accept',
+        Vary: 'Accept',
       },
     });
   },

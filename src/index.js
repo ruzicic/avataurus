@@ -1,2 +1,2 @@
-export { generateAvatar, fnv1a } from './avataurus.js';
+export { fnv1a, generateAvatar } from './avataurus.js';
 export { AvatarUs } from './element.js';

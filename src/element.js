@@ -40,7 +40,11 @@ class AvatarUs extends HTMLElement {
     const colorsAttr = this.getAttribute('colors');
     let colors = null;
     if (colorsAttr) {
-      try { colors = JSON.parse(colorsAttr); } catch(e) { /* ignore */ }
+      try {
+        colors = JSON.parse(colorsAttr);
+      } catch (_e) {
+        /* ignore */
+      }
     }
 
     const mood = this.getAttribute('mood') || null;
@@ -61,9 +65,13 @@ class AvatarUs extends HTMLElement {
           transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
           will-change: transform;
         }
-        ${noHover ? '' : `.avatar-wrap:hover {
+        ${
+          noHover
+            ? ''
+            : `.avatar-wrap:hover {
           transform: scale(1.05) rotate(1.5deg);
-        }`}
+        }`
+        }
         svg {
           border-radius: 20%;
           display: block;
