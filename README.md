@@ -93,6 +93,10 @@ document.getElementById('avatar').innerHTML = svg
 | `colors` | Comma-separated color values |
 | `no-hover` | Disable hover animation |
 
+## WordPress
+
+Drop-in plugin: [avataurus-wp](https://github.com/ruzicic/avataurus-wp). Replaces default Gravatar with unique Avataurus faces. Activate, pick a variant in Settings > Discussion, done.
+
 ## How It Works
 
 Avataurus runs your string through hash functions and extracts bits to deterministically select:

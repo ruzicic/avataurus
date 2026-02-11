@@ -466,6 +466,7 @@ footer{
     <nav class="nav">
       <a href="https://github.com/ruzicic/avataurus">GitHub</a>
       <a href="https://www.npmjs.com/package/avataurus">npm</a>
+      <a href="https://github.com/ruzicic/avataurus-wp">WordPress</a>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
         <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
@@ -656,6 +657,7 @@ footer{
       <div class="footer-links">
         <a href="https://github.com/ruzicic/avataurus">Source</a>
         <a href="https://www.npmjs.com/package/avataurus">npm</a>
+        <a href="https://github.com/ruzicic/avataurus-wp">WordPress</a>
         <a href="https://github.com/ruzicic/avataurus/issues">Issues</a>
       </div>
     </div>
