@@ -1,13 +1,21 @@
 /**
  * Avataurus Web Component
  * <avatar-us name="john" size="48" variant="gradient" show-initial></avatar-us>
+ *
+ * Attributes:
+ *   name       - String to generate avatar from
+ *   size       - Pixel size (default: 48)
+ *   variant    - 'gradient' or 'solid'
+ *   show-initial - Show first letter overlay
+ *   colors     - JSON array of 4 colors
+ *   no-hover   - Disable hover animation
  */
 
 import { generateAvatar } from './avataurus.js';
 
 class AvatarUs extends HTMLElement {
   static get observedAttributes() {
-    return ['name', 'size', 'colors', 'variant', 'show-initial'];
+    return ['name', 'size', 'colors', 'variant', 'show-initial', 'no-hover'];
   }
 
   constructor() {
@@ -28,6 +36,7 @@ class AvatarUs extends HTMLElement {
     const size = parseInt(this.getAttribute('size') || '48', 10);
     const variant = this.getAttribute('variant') || 'gradient';
     const showInitial = this.hasAttribute('show-initial');
+    const noHover = this.hasAttribute('no-hover');
     const colorsAttr = this.getAttribute('colors');
     let colors = null;
     if (colorsAttr) {
@@ -44,11 +53,20 @@ class AvatarUs extends HTMLElement {
           width: ${size}px;
           height: ${size}px;
         }
+        .avatar-wrap {
+          display: inline-block;
+          transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+          will-change: transform;
+        }
+        ${noHover ? '' : `.avatar-wrap:hover {
+          transform: scale(1.05) rotate(1.5deg);
+        }`}
         svg {
           border-radius: 20%;
+          display: block;
         }
       </style>
-      ${svg}
+      <div class="avatar-wrap">${svg}</div>
     `;
   }
 }

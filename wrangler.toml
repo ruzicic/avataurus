@@ -2,3 +2,14 @@ name = "avataurus"
 main = "worker/index.js"
 compatibility_date = "2024-01-01"
 account_id = "2cb7204b26e8ab0d505dd8ed8a23a34d"
+
+# Custom domain (uncomment and configure when ready)
+# routes = [
+#   { pattern = "avataurus.dev/*", zone_name = "avataurus.dev" }
+# ]
+#
+# Or use custom_domain on workers.dev:
+# [env.production]
+# routes = [
+#   { pattern = "avataurus.dev", custom_domain = true }
+# ]

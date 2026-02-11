@@ -1,7 +1,7 @@
 {
   "name": "avataurus",
   "version": "1.0.0",
-  "description": "Deterministic avatar generator — unique dinosaur-inspired faces from any string",
+  "description": "Deterministic avatar generator — unique dinosaur-inspired faces from any string. 1.7B+ combinations, zero dependencies.",
   "type": "module",
   "main": "src/avataurus.js",
   "module": "src/avataurus.js",
@@ -18,7 +18,9 @@
   "files": [
     "src/",
     "types/",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "types": "types/index.d.ts",
   "keywords": [
@@ -27,10 +29,22 @@
     "deterministic",
     "svg",
     "web-component",
-    "cloudflare-worker"
+    "cloudflare-worker",
+    "dinosaur",
+    "dino",
+    "profile-picture",
+    "hash"
   ],
   "author": "mladen",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruzicic/avataurus.git"
+  },
+  "homepage": "https://avataurus.workers.dev",
+  "bugs": {
+    "url": "https://github.com/ruzicic/avataurus/issues"
+  },
   "devDependencies": {
     "wrangler": "^3.0.0"
   },

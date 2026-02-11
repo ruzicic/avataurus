@@ -1,6 +1,36 @@
 # 🦕 Avataurus
 
-Deterministic avatar generator — unique, dinosaur-inspired faces from any string. Same input = same face.
+[![npm version](https://img.shields.io/npm/v/avataurus)](https://www.npmjs.com/package/avataurus)
+[![license](https://img.shields.io/npm/l/avataurus)](LICENSE)
+[![zero dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)]()
+
+**Deterministic avatar generator** — unique, dinosaur-inspired faces from any string. Same input = same face. **1.7 billion+** unique combinations across 13 feature layers.
+
+🔗 **[Live Demo →](https://avataurus.workers.dev)**
+
+![Gallery](https://avataurus.workers.dev/alice?size=80) ![Gallery](https://avataurus.workers.dev/bob?size=80) ![Gallery](https://avataurus.workers.dev/charlie?size=80) ![Gallery](https://avataurus.workers.dev/diana?size=80) ![Gallery](https://avataurus.workers.dev/elena?size=80) ![Gallery](https://avataurus.workers.dev/frank?size=80)
+
+## Features
+
+- 🎯 **Deterministic** — same input always gives the same avatar
+- 🦕 **13 feature layers** — head, spikes, eyes, eyebrows, mouth, nose, cheeks, ears, face markings, accessories, belly patch, tail, background
+- 📦 **Zero dependencies** — pure vanilla JavaScript
+- ⚡ **Blazing fast** — SVG generated in <2ms
+- 🔌 **Web Component** — `<avatar-us>` custom element with hover animations
+- ☁️ **Cloudflare Worker** — image URL API on the edge
+- 🎨 **16 color palettes** with gradient and solid variants
+
+## Install
+
+```bash
+npm install avataurus
+```
+
+Or use the CDN:
+
+```html
+<script type="module" src="https://unpkg.com/avataurus/src/element.js"></script>
+```
 
 ## Usage
 
@@ -8,7 +38,7 @@ Deterministic avatar generator — unique, dinosaur-inspired faces from any stri
 
 ```html
 <img src="https://avataurus.workers.dev/john" width="48" height="48" />
-<img src="https://avataurus.workers.dev/john?size=128&variant=solid" />
+<img src="https://avataurus.workers.dev/john?size=128&variant=solid&initial=true" />
 ```
 
 ### Web Component
@@ -17,7 +47,9 @@ Deterministic avatar generator — unique, dinosaur-inspired faces from any stri
 <script type="module" src="https://unpkg.com/avataurus/src/element.js"></script>
 
 <avatar-us name="john" size="48"></avatar-us>
-<avatar-us name="jane" size="64" variant="solid" show-initial></avatar-us>
+<avatar-us name="jane" size="64" variant="solid"></avatar-us>
+<avatar-us name="bob" size="48" show-initial></avatar-us>
+<avatar-us name="static" size="48" no-hover></avatar-us>
 ```
 
 ### JavaScript API
@@ -43,6 +75,29 @@ document.getElementById('avatar').innerHTML = svg;
 | `showInitial` | boolean | false | Show first letter overlay |
 | `colors` | string[4] | auto | Custom color palette `[main, secondary, light, bg]` |
 
+## Web Component Attributes
+
+| Attribute | Description |
+|-----------|-------------|
+| `name` | String to generate avatar from |
+| `size` | Pixel size (default: 48) |
+| `variant` | `gradient` or `solid` |
+| `show-initial` | Show first letter overlay |
+| `colors` | JSON array of 4 hex colors |
+| `no-hover` | Disable hover animation |
+
+## Self-Hosting
+
+Avataurus runs as a Cloudflare Worker:
+
+```bash
+git clone https://github.com/ruzicic/avataurus
+cd avataurus
+npm install
+npm run dev      # local dev server
+npm run deploy   # deploy to Cloudflare
+```
+
 ## License
 
-MIT
+[MIT](LICENSE) © mladen
